@@ -1,7 +1,0 @@
-Github: https://github.com/FraserGreen/SEPT-Team-6
-
-Jira: https://s3842508.atlassian.net/jira/people/team/3978b706-eea4-4712-abcb-ae9974a0b42e
-
-Slack: sept-group6.slack.com
-
-MS Teams: https://teams.microsoft.com/l/channel/19%3ax24qBElsAOHgKUsR0ObKbc6VqJyGgmmrm6OsLR0mzFo1%40thread.tacv2/General?groupId=79714585-a02d-4825-b911-de32d61c913b&tenantId=d1323671-cdbe-4417-b4d4-bdb24b51316b

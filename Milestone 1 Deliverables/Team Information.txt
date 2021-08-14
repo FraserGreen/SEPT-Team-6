@@ -1,6 +1,0 @@
-Team Name: SEPT-Team-6
-
-Team Members:
-Scrum Master: Reylan Gill
-Product Owner: Fraser Green
-Development Team: Hugh Phung, Sam Te
