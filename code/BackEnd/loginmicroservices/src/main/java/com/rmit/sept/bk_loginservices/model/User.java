@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.Collection;
 
@@ -29,6 +30,8 @@ public class User implements UserDetails {
     private String lastName;
     @NotBlank(message = "Please enter your address")
     private String address;
+//    what is our accepted format/s?
+//    @Pattern(regexp = "<number format here>", message = "Please enter a valid phone number")
     @NotBlank(message = "Please enter your phone number")
     private String phone;
 //    wat is validation

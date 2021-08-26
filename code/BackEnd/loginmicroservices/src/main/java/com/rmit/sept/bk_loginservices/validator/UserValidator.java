@@ -1,6 +1,7 @@
 package com.rmit.sept.bk_loginservices.validator;
 
 import com.rmit.sept.bk_loginservices.model.User;
+import com.rmit.sept.bk_loginservices.model.UserType;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -31,5 +32,26 @@ public class UserValidator implements Validator {
 
 
 
+        // Check if userType is valid, if true checks if business account and business info (ABN & name) is valid,
+        // otherwise ensures business info is empty (non-business account).
+        if (!UserType.USERTYPES.contains(user.getUserType())) {
+            errors.rejectValue("userType", "Invalid", "Invalid user type");
+        }
+        else {
+            if (user.getUserType().equals(UserType.BUSINESS)) {
+                if (!user.getAbn().matches(".*")) {
+//              not sure what second arg is meant to be used for. (errorCode ?)
+                    errors.rejectValue("abn", "Format", "Invalid ABN");
+                }
+                if (user.getBusinessName().trim().isEmpty()) {
+//              not sure what second arg is meant to be used for. (errorCode ?)
+                    errors.rejectValue("businessName", "Empty", "Business accounts must specify a business name");
+                }
+            }
+            else {
+                user.setAbn("");
+                user.setBusinessName("");
+            }
+        }
     }
 }
