@@ -9,6 +9,7 @@ export const HomepageList = () => {
                 <ListGroup.Item>Demon Slayer</ListGroup.Item>
                 <ListGroup.Item>Berserk</ListGroup.Item>
                 <ListGroup.Item>Vagabond</ListGroup.Item>
+                <ListGroup.Item>No Longer Human</ListGroup.Item>
             </ListGroup>
         </div>
     )
