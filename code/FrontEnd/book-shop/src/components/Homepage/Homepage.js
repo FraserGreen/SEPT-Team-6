@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {data} from "../../data/Data"
 import {Card, Row} from 'react-bootstrap'
 import { Col, Container} from 'react-bootstrap'
+import { HomepageList } from './HomepageList'
 
 export const Homepage = () => {
     const [books, setBooks] = useState(data)
@@ -24,14 +25,26 @@ export const Homepage = () => {
     })
 
     return (
-        <div className='main-wrapper'>
-            <Container>
-            <Row >
-            {bookDisplay}
-            </Row>
-            </Container>
- 
+        <div>
+            <div className='main-wrapper-home-page'>
+                <br>
+                </br>
+                <Container>
+                    
+                <Row >
+                    <Col>
+                        <HomepageList/>
+                    </Col>
+                    
+                {bookDisplay}
+                </Row>
+                </Container>
+
+            </div>
         </div>
+
+
+
             
 
     )
