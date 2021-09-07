@@ -30,8 +30,6 @@ public class BookController {
 
     @PostMapping("/addbook")
     public ResponseEntity<?> addBook(@Valid @RequestBody Book book, BindingResult result){
-        // Validate passwords match
-
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
@@ -54,9 +52,12 @@ public class BookController {
 
     @PostMapping("/getimguploadurl")
     public ResponseEntity<?> getImgUploadUrl(@Valid @RequestBody ImgUploadUrlRequest imgUploadUrlRequest, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if(errorMap != null) return errorMap;
 
-        String url = "http://localhost:8080/api/upload/" + imgUploadUrlRequest.getBookId();
+        Book book = bookService.getBook(imgUploadUrlRequest.getBookId());
 
+        String url = "http://localhost:8080/api/upload/" + book.getId();
         return ResponseEntity.ok(new ImgUploadUrlResponse(url));
     }
 

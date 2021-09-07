@@ -20,7 +20,7 @@ public class BookService {
 
     public Book getBook (Long id) {
         Book book = bookRepository.getById(id);
-        if (book == null) new BookNotFoundException("Book with id " + id + " not found");
+        if (book == null) throw new BookNotFoundException("Book with id " + id + " not found");
         return book;
     }
 
