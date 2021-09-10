@@ -7,18 +7,16 @@ const SessionUserContext = React.createContext(null)
 export const SessionUserProvider = ({children}) => {
     const [loggedIn, setLoggedIn] = useState(false)
 
-    const initialUser = () => {
-        const user = localStorage.getItem(SESSION_USER)
-        console.log("user: ", user)
-        if(user.length > 0 && user !== undefined) {
-            return JSON.parse(user)
-        }
-        return ""
-    }
+    // const initialUser = () => {
+    //     const user = localStorage.getItem(SESSION_USER)
+    //     console.log("user: ", user)
+    //     if(user.length > 0 && user !== undefined) {
+    //         return JSON.parse(user)
+    //     }
+    //     return ""
+    // }
 
-    const [sessionUser, setSessionUser] = useState(initialUser())
-
- 
+    const [sessionUser, setSessionUser] = useState()
 
     const loginSessionUser = (user) => {
         localStorage.setItem(SESSION_USER, user);
