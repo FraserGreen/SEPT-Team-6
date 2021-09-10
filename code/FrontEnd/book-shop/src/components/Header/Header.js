@@ -33,6 +33,12 @@ export const Header = () => {
                         <div className='padding'>
                                 <Button variant="secondary" onClick={logout} >Logout</Button>{' '}    
                         </div>
+
+                        <div className = 'padding'>
+                        <NavLink to = "/management">
+                            <Button variant="secondary">Management</Button>{' '}    
+                        </NavLink>
+                        </div>
                     </div>
                 </Container>
             </div>)
