@@ -39,7 +39,7 @@ public class UserValidator implements Validator {
         }
         else {
             if (user.getUserType().equals(UserType.BUSINESS)) {
-                if (!user.getAbn().matches(".*")) {
+                if (!user.getAbn().matches("\\d{11}")) {
 //              not sure what second arg is meant to be used for. (errorCode ?)
                     errors.rejectValue("abn", "Format", "Invalid ABN");
                 }

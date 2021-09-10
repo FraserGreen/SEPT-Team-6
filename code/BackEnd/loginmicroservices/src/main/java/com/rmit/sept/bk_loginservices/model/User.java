@@ -30,18 +30,12 @@ public class User implements UserDetails {
     private String lastName;
     @NotBlank(message = "Please enter your address")
     private String address;
-//    what is our accepted format/s?
-//    @Pattern(regexp = "<number format here>", message = "Please enter a valid phone number")
+    @Pattern(regexp = "((\\+)?61\\d{9})|((0\\d)?\\d{8})", message = "Please enter a valid Australian phone number")
     @NotBlank(message = "Please enter your phone number")
     private String phone;
-//    wat is validation
-//    @NotBlank(message = "Please enter your first name")
+    @NotBlank(message = "User type required")
     private String userType;
-//    blank ok depending on user type?
-//    @NotBlank(message = "Please enter your first name")
     private String abn;
-//    blank ok depending on user type?
-//    @NotBlank(message = "Please enter your first name")
     private String businessName;
     @Transient
     private String confirmPassword;
