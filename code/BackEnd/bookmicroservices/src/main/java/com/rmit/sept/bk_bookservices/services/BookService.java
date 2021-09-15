@@ -81,4 +81,9 @@ public class BookService {
         results.put("results", resultsList);
         return ResponseEntity.ok(results);
     }
+
+    public ResponseEntity<?> getAllBooks() {
+        List<Book> books = bookRepository.findAll();
+        return ResponseEntity.ok(books);
+    }
 }

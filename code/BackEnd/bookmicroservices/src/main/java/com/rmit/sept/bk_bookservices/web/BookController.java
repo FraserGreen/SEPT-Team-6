@@ -79,4 +79,10 @@ public class BookController {
 
         return bookService.getBooksByGenre(genreRequest.getSearchTerm());
     }
+
+
+    @PostMapping("/getallbooks")
+    public ResponseEntity<?> getAllBooks() {
+        return bookService.getAllBooks();
+    }
 }
