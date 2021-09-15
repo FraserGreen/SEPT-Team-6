@@ -5,6 +5,7 @@ import com.rmit.sept.bk_bookservices.model.Book;
 import com.rmit.sept.bk_bookservices.payload.ImgUploadUrlRequest;
 import com.rmit.sept.bk_bookservices.payload.GetBookRequest;
 import com.rmit.sept.bk_bookservices.payload.ImgUploadUrlResponse;
+import com.rmit.sept.bk_bookservices.payload.SearchRequest;
 import com.rmit.sept.bk_bookservices.services.MapValidationErrorService;
 import com.rmit.sept.bk_bookservices.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,20 +30,20 @@ public class BookController {
 
 
     @PostMapping("/addbook")
-    public ResponseEntity<?> addBook(@Valid @RequestBody Book book, BindingResult result){
+    public ResponseEntity<?> addBook(@Valid @RequestBody Book book, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null)return errorMap;
+        if (errorMap != null) return errorMap;
 
         Book newBook = bookService.saveBook(book);
 
-        return  new ResponseEntity<Book>(newBook, HttpStatus.CREATED);
+        return new ResponseEntity<Book>(newBook, HttpStatus.CREATED);
     }
 
 
     @PostMapping("/getbook")
-    public ResponseEntity<?> getBook(@Valid @RequestBody GetBookRequest getBookRequest, BindingResult result){
+    public ResponseEntity<?> getBook(@Valid @RequestBody GetBookRequest getBookRequest, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null) return errorMap;
+        if (errorMap != null) return errorMap;
 
         Book book = bookService.getBook(getBookRequest.getId());
 
@@ -53,7 +54,7 @@ public class BookController {
     @PostMapping("/getimguploadurl")
     public ResponseEntity<?> getImgUploadUrl(@Valid @RequestBody ImgUploadUrlRequest imgUploadUrlRequest, BindingResult result) {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null) return errorMap;
+        if (errorMap != null) return errorMap;
 
         Book book = bookService.getBook(imgUploadUrlRequest.getBookId());
 
@@ -61,4 +62,21 @@ public class BookController {
         return ResponseEntity.ok(new ImgUploadUrlResponse(url));
     }
 
+
+    @PostMapping("/searchbooks")
+    public ResponseEntity<?> searchForBooks(@Valid @RequestBody SearchRequest searchRequest, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) return errorMap;
+
+        return bookService.getSearchResults(searchRequest.getSearchTerm());
+    }
+
+
+    @PostMapping("/booksbygenre")
+    public ResponseEntity<?> getBooksByGenre(@Valid @RequestBody SearchRequest genreRequest, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) return errorMap;
+
+        return bookService.getBooksByGenre(genreRequest.getSearchTerm());
+    }
 }

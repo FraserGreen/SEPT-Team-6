@@ -4,8 +4,15 @@ package com.rmit.sept.bk_bookservices.services;
 import com.rmit.sept.bk_bookservices.Repositories.BookRepository;
 import com.rmit.sept.bk_bookservices.exceptions.BookNotFoundException;
 import com.rmit.sept.bk_bookservices.model.Book;
+import com.rmit.sept.bk_bookservices.payload.SearchResultsEmptyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class BookService {
@@ -24,4 +31,51 @@ public class BookService {
         return book;
     }
 
+    public ResponseEntity<?> getSearchResults(String searchTerm) {
+        searchTerm = searchTerm.trim().replaceAll("\\s+"," ");
+        Map<String, List<Book>> results = new HashMap<String, List<Book>>();
+
+        if (!searchTerm.isEmpty()) {
+            List<Book> byIsbn = bookRepository.findByIsbn(searchTerm);
+            if (!byIsbn.isEmpty()) {
+                results.put("isbn", byIsbn);
+            }
+
+            List<Book> byTitle = bookRepository.findByTitleIgnoreCaseContains(searchTerm);
+            if (!byTitle.isEmpty()) {
+                results.put("title", byTitle);
+            }
+
+            List<Book> byAuthor = bookRepository.findByAuthorIgnoreCaseContains(searchTerm);
+            if (!byAuthor.isEmpty()) {
+                results.put("author", bookRepository.findByAuthorIgnoreCaseContains(searchTerm));
+            }
+
+            List<Book> byGenre = bookRepository.findByGenreIgnoreCaseContains(searchTerm);
+            if (!byGenre.isEmpty()) {
+                results.put("genre", bookRepository.findByGenreIgnoreCaseContains(searchTerm));
+            }
+        }
+
+        if (results.isEmpty()) {
+            return ResponseEntity.ok(new SearchResultsEmptyResponse(searchTerm));
+        }
+        return new ResponseEntity<Map<String, List<Book>>>(results, HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> getBooksByGenre(String genre) {
+        genre = genre.trim().replaceAll("\\s+"," ");
+        List<Book> resultsList = null;
+
+        if (!genre.isEmpty()) {
+            resultsList = bookRepository.findByGenreIgnoreCaseContains(genre);
+        }
+        if ((resultsList == null) || resultsList.isEmpty()) {
+            return ResponseEntity.ok(new SearchResultsEmptyResponse(genre));
+        }
+
+        Map<String, List<Book>> results = new HashMap<String, List<Book>>();
+        results.put("results", resultsList);
+        return ResponseEntity.ok(results);
+    }
 }
