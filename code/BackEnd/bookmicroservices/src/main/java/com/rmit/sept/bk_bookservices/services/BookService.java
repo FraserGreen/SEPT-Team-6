@@ -22,6 +22,9 @@ public class BookService {
 
 
     public Book saveBook(Book newBook){
+        newBook.setTitle(newBook.getTitle().trim().replaceAll("\\s+"," "));
+        newBook.setAuthor(newBook.getAuthor().trim().replaceAll("\\s+"," "));
+        newBook.setGenre(newBook.getGenre().trim().replaceAll("\\s+"," "));
         return bookRepository.save(newBook);
     }
 
