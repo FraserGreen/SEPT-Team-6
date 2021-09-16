@@ -32,7 +32,6 @@ public class BookController {
     public ResponseEntity<?> addBook(@Valid @RequestBody Book book, BindingResult result){
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
-
         Book newBook = bookService.saveBook(book);
 
         return  new ResponseEntity<Book>(newBook, HttpStatus.CREATED);
