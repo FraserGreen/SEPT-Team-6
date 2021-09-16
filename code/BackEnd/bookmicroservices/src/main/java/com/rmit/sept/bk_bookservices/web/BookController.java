@@ -58,7 +58,7 @@ public class BookController {
 
         Book book = bookService.getBook(imgUploadUrlRequest.getBookId());
 
-        String url = "http://localhost:8080/api/upload/" + book.getId();
+        String url = "http://localhost:8089/api/upload/" + book.getId();
         return ResponseEntity.ok(new ImgUploadUrlResponse(url));
     }
 
