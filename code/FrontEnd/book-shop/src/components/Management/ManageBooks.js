@@ -32,7 +32,7 @@ export const ManageBooks = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <div className='buttonComponent'>
+                            <div className='addBook'>
                                 <NavLink to = "/management/books/add">
                                 <Button style={{width:'100px', background:'cadetblue', border:'cadetblue'}}>
                                     Add

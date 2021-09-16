@@ -7,7 +7,7 @@ const axios = require('axios');
 
 
 export const Register = () => {
-    const {fields, setFields, handleInputChange} = useForm({})
+    const {fields, setFields, handleInputChange} = useForm({});
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState({
         success:false,  
@@ -106,7 +106,7 @@ export const Register = () => {
                     <Alert variant="danger" onClose={() => setShow(false)} dismissible>
                     <Alert.Heading>{message.message}</Alert.Heading>
                     <p>
-                    Please re-enter passwords
+                    Fields are incorrect
                     </p>
                     </Alert>
                     :
@@ -150,6 +150,7 @@ export const Register = () => {
           
           
                     <br></br>
+                    
                     <Button variant="primary" type="submit" onClick={submit}>
                         Submit
                     </Button>

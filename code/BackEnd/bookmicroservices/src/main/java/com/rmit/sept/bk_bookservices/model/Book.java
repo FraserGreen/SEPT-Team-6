@@ -22,8 +22,8 @@ public class Book {
     @NotBlank(message = "Genre is required")
     private String genre;
 //    private String tableOfContents;
-//    private Date create_At;
-//    private Date update_At;
+    private Date create_At;
+    private Date update_At;
 
     //OneToMany with Project
 
@@ -55,32 +55,32 @@ public class Book {
     public void setGenre(String genre) { this.genre = genre; }
 
 //    public String getTableOfContents() { return tableOfContents; }
-
+//
 //    public void setTableOfContents(String tableOfContents) { this.tableOfContents = tableOfContents; }
 
-//    public Date getCreate_At() {
-//        return create_At;
-//    }
-//
-//    public void setCreate_At(Date create_At) {
-//        this.create_At = create_At;
-//    }
-//
-//    public Date getUpdate_At() {
-//        return update_At;
-//    }
-//
-//    public void setUpdate_At(Date update_At) {
-//        this.update_At = update_At;
-//    }
+    public Date getCreate_At() {
+        return create_At;
+    }
 
-//    @PrePersist
-//    protected void onCreate(){
-//        this.create_At = new Date();
-//    }
-//
-//    @PreUpdate
-//    protected void onUpdate(){
-//        this.update_At = new Date();
-//    }
+    public void setCreate_At(Date create_At) {
+        this.create_At = create_At;
+    }
+
+    public Date getUpdate_At() {
+        return update_At;
+    }
+
+    public void setUpdate_At(Date update_At) {
+        this.update_At = update_At;
+    }
+
+    @PrePersist
+    protected void onCreate(){
+        this.create_At = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.update_At = new Date();
+    }
 }
