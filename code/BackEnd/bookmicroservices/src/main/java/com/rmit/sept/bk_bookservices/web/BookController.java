@@ -39,6 +39,15 @@ public class BookController {
         return new ResponseEntity<Book>(newBook, HttpStatus.CREATED);
     }
 
+//    @GetMapping("/populateData")
+//    public ResponseEntity<?> populateData() {
+//
+//        Book book1 = new Book("The Hunr")
+//        bookService.saveBook(book1);
+//
+//        return new ResponseEntity<Book>(newBook, HttpStatus.CREATED);
+//    }
+
 
     @PostMapping("/getbook")
     public ResponseEntity<?> getBook(@Valid @RequestBody GetBookRequest getBookRequest, BindingResult result) {

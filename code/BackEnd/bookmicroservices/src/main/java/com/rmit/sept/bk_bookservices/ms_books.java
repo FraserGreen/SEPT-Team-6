@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class ms_books {
+
     public static void main(String[] args) {
         SpringApplication.run(ms_books.class, args);
     }

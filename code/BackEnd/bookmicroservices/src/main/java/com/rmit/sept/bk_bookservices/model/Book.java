@@ -21,7 +21,7 @@ public class Book {
     private String author;
     @NotBlank(message = "Genre is required")
     private String genre;
-//    private String tableOfContents;
+    private String tableOfContents;
     private Date create_At;
     private Date update_At;
 
@@ -54,9 +54,9 @@ public class Book {
 
     public void setGenre(String genre) { this.genre = genre; }
 
-//    public String getTableOfContents() { return tableOfContents; }
-//
-//    public void setTableOfContents(String tableOfContents) { this.tableOfContents = tableOfContents; }
+    public String getTableOfContents() { return tableOfContents; }
+
+    public void setTableOfContents(String tableOfContents) { this.tableOfContents = tableOfContents; }
 
     public Date getCreate_At() {
         return create_At;
