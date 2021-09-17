@@ -39,24 +39,24 @@ public class BookService {
         Map<String, List<Book>> results = new HashMap<String, List<Book>>();
 
         if (!searchTerm.isEmpty()) {
-            List<Book> byIsbn = bookRepository.findByIsbn(searchTerm);
+            List<Book> byIsbn = bookRepository.findByIsbnOrderByTitleAsc(searchTerm);
             if (!byIsbn.isEmpty()) {
                 results.put("isbn", byIsbn);
             }
 
-            List<Book> byTitle = bookRepository.findByTitleIgnoreCaseContains(searchTerm);
+            List<Book> byTitle = bookRepository.findByTitleIgnoreCaseContainsOrderByTitleAsc(searchTerm);
             if (!byTitle.isEmpty()) {
                 results.put("title", byTitle);
             }
 
-            List<Book> byAuthor = bookRepository.findByAuthorIgnoreCaseContains(searchTerm);
+            List<Book> byAuthor = bookRepository.findByAuthorIgnoreCaseContainsOrderByTitleAsc(searchTerm);
             if (!byAuthor.isEmpty()) {
-                results.put("author", bookRepository.findByAuthorIgnoreCaseContains(searchTerm));
+                results.put("author", bookRepository.findByAuthorIgnoreCaseContainsOrderByTitleAsc(searchTerm));
             }
 
-            List<Book> byGenre = bookRepository.findByGenreIgnoreCaseContains(searchTerm);
+            List<Book> byGenre = bookRepository.findByGenreIgnoreCaseContainsOrderByTitleAsc(searchTerm);
             if (!byGenre.isEmpty()) {
-                results.put("genre", bookRepository.findByGenreIgnoreCaseContains(searchTerm));
+                results.put("genre", bookRepository.findByGenreIgnoreCaseContainsOrderByTitleAsc(searchTerm));
             }
         }
 
@@ -71,7 +71,7 @@ public class BookService {
         List<Book> resultsList = null;
 
         if (!genre.isEmpty()) {
-            resultsList = bookRepository.findByGenreIgnoreCaseContains(genre);
+            resultsList = bookRepository.findByGenreIgnoreCaseContainsOrderByTitleAsc(genre);
         }
         if ((resultsList == null) || resultsList.isEmpty()) {
             return ResponseEntity.ok(new SearchResultsEmptyResponse(genre));
@@ -83,7 +83,7 @@ public class BookService {
     }
 
     public ResponseEntity<?> getAllBooks() {
-        List<Book> books = bookRepository.findAll();
+        List<Book> books = bookRepository.findAllByOrderByTitleAsc();
         return ResponseEntity.ok(books);
     }
 }

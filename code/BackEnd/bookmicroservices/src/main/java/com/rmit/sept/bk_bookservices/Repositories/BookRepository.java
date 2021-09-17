@@ -11,10 +11,10 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
     Book getById(Long id);
 
-    List<Book> findByIsbn(String isbn);
-    List<Book> findByTitleIgnoreCaseContains(String title);
-    List<Book> findByAuthorIgnoreCaseContains(String author);
-    List<Book> findByGenreIgnoreCaseContains(String genre);
+    List<Book> findByIsbnOrderByTitleAsc(String isbn);
+    List<Book> findByTitleIgnoreCaseContainsOrderByTitleAsc(String title);
+    List<Book> findByAuthorIgnoreCaseContainsOrderByTitleAsc(String author);
+    List<Book> findByGenreIgnoreCaseContainsOrderByTitleAsc(String genre);
 
-    List<Book> findAll();
+    List<Book> findAllByOrderByTitleAsc();
 }
