@@ -9,4 +9,3 @@ public class UserType {
     public static final String BUSINESS = "business";
 
     public static final List<String> USERTYPES = Arrays.asList(ADMIN, USER, BUSINESS);
-}

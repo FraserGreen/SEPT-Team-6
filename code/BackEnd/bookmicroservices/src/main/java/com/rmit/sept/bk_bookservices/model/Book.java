@@ -21,7 +21,13 @@ public class Book {
     private String author;
     @NotBlank(message = "Genre is required")
     private String genre;
-    private String tableOfContents;
+//    private String tableOfContents;
+    @NotBlank(message = "Image URL is required")
+    private String imgURL;
+    @NotBlank(message = "Description is required")
+    private String description;
+//    @NotBlank(message = "Price is required")
+    private String price;
     private Date create_At;
     private Date update_At;
 
@@ -54,9 +60,20 @@ public class Book {
 
     public void setGenre(String genre) { this.genre = genre; }
 
-    public String getTableOfContents() { return tableOfContents; }
+    public String getImgURL() { return imgURL; }
 
-    public void setTableOfContents(String tableOfContents) { this.tableOfContents = tableOfContents; }
+    public void setImgURL(String imgURL) { this.imgURL = imgURL; }
+
+    public String getDescription() {return description;}
+
+    public void setDescription(String description) {this.description = description;}
+
+    public String getPrice() {return price;}
+
+    public void setPrice(String price) {this.price = price;}
+//    public String getTableOfContents() { return tableOfContents; }
+//
+//    public void setTableOfContents(String tableOfContents) { this.tableOfContents = tableOfContents; }
 
     public Date getCreate_At() {
         return create_At;

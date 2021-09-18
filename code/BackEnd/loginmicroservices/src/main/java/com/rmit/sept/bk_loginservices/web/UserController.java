@@ -2,6 +2,7 @@ package com.rmit.sept.bk_loginservices.web;
 
 
 import com.rmit.sept.bk_loginservices.model.User;
+import com.rmit.sept.bk_loginservices.Repositories.UserRepository;
 import com.rmit.sept.bk_loginservices.payload.JWTLoginSucessReponse;
 import com.rmit.sept.bk_loginservices.payload.LoginRequest;
 import com.rmit.sept.bk_loginservices.security.JwtTokenProvider;
@@ -41,6 +42,9 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+    @Autowired
+    private UserRepository userRepository;
+
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
@@ -53,6 +57,27 @@ public class UserController {
         User newUser = userService.saveUser(user);
 
         return  new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/makeAdminAccount")
+    public ResponseEntity<?> createAdmin(){
+
+        if (userRepository.findByUsername("admin@gmail.com") != null)
+        {
+            return new ResponseEntity<String>("Admin already exists data", HttpStatus.CREATED);
+        }
+        User newUser = new User();
+        newUser.setUsername("admin@gmail.com");
+        newUser.setFirstName("administrator");
+        newUser.setLastName("isBest");
+        newUser.setAddress("admin street");
+        newUser.setPhone("0434386214");
+        newUser.setUserType("admin");
+        newUser.setPassword("password");
+        newUser.setPassword("password");
+        userService.saveUser(newUser);
+
+        return  new ResponseEntity<String>("admin created", HttpStatus.CREATED);
     }
 
 

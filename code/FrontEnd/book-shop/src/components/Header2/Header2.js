@@ -23,7 +23,7 @@ export const Header2 = () => {
                         <Form className="d-flex">
                         <FormControl
                             type="search"
-                            placeholder="Search"
+                            placeholder="Search (not fully implemented in front-end yet, back-end is complete)"
                             className="mr-2"
                             aria-label="Search"
                         />
@@ -32,9 +32,7 @@ export const Header2 = () => {
                     </Col>
               
                 </Row>
-        
-
-       
+               
             </Container>
 
            

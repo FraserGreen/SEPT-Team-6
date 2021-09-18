@@ -69,4 +69,3 @@ public class JwtTokenProvider {
         return Long.parseLong(id);
     }
 }
-
