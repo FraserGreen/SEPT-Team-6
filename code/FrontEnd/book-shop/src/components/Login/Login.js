@@ -13,6 +13,7 @@ export const Login = () => {
 
     const history = useHistory();
     const {loginSessionUser} = useSessionUser();
+    const {userType} = useSessionUser();
     const {fields, setFields, handleInputChange} = useForm({});
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState({
@@ -57,7 +58,11 @@ export const Login = () => {
                 const decoded = jwt_decode(response.data.token);
 
                 loginSessionUser(JSON.stringify(decoded));
-                // localStorage.setItem(SESSION_USER, JSON.stringify(decoded));
+                loginSessionUser(decoded);
+
+                console.log(JSON.stringify(decoded));
+
+                localStorage.setItem(SESSION_USER, JSON.stringify(decoded));
 
                 console.log(JSON.parse(localStorage.getItem(SESSION_USER)));
 
@@ -109,16 +114,24 @@ export const Login = () => {
             <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="john.doe@gmail.com" name = 'username' value = {fields.username} onChange={handleInputChange}/>
+                        <Form.Control type="email" placeholder="admin@gmail.com" name = 'username' value = {fields.username} onChange={handleInputChange}/>
 
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" name='password' value={fields.password} onChange={handleInputChange}/>
+                        <Form.Control type="password" placeholder="password" name='password' value={fields.password} onChange={handleInputChange}/>
                     </Form.Group>
                               
                     <br></br>
+                    Admin account: 
+                    <br></br>
+                    email: admin@gmail.com
+                    <br></br>
+                    password: password
+                    <br></br>
+                    <br></br>
+
                     <Button variant="primary" type="submit" onClick={submit}>
                         Login
                     </Button>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from '../../Hooks/useForm'
 import { useState } from 'react';
-import { Form, Container, Button, Alert, Row} from 'react-bootstrap'
+import { Form, Container, Button, Alert, Row, FloatingLabel} from 'react-bootstrap'
 import { useHistory, NavLink} from 'react-router-dom';
 import './ManageBooks.css'
 // import './Management/ManageBooks.css'
@@ -11,6 +11,7 @@ const axios = require('axios');
 export const AddBooks = () => {
 
     const history = useHistory();
+    const maxWords = 35;
 
     const {fields, setFields, handleInputChange} = useForm({});
     const [show, setShow] = useState(false);
@@ -37,11 +38,35 @@ export const AddBooks = () => {
             return;
         }
 
+        
+
+        var calculateDescriptionLength = () =>
+        {
+            var string = document.getElementById('description').value;
+            var length = string.split(/[^\s]+/).length - 1;
+            return length;
+        }
+
+        if (calculateDescriptionLength() > maxWords)
+        {
+            setShow(true);
+            
+            setMessage({
+                success:false,
+                failure:true,
+                message:"Description too long!"
+            })
+
+            return;
+        }
         const data = {
             isbn: String(fields.isbn),
             title: String(fields.title),
             author: String(fields.author),
-            genre: String(fields.genre)
+            genre: String(fields.genre),
+            description: String(fields.description),
+            imgURL: String(fields.imageURL),
+            price: String(fields.price)
         };
 
         try {
@@ -66,7 +91,10 @@ export const AddBooks = () => {
                     isbn:"",
                     title:"",
                     author:"",
-                    genre:""
+                    genre:"",
+                    description:"",
+                    imgURL:"",
+                    price:""
                 })
 
                 setShow(true);
@@ -132,15 +160,52 @@ export const AddBooks = () => {
                     <Form.Label>Author</Form.Label>
                     <Form.Control placeholder="Hugh Janus" name='author' value={fields.author} onChange={handleInputChange} />
                 </Form.Group>
-                <Form.Group className="mb-3">
+                {/* <Form.Group className="mb-3">
                     <Form.Label>Genre</Form.Label>
                     <Form.Control placeholder="Comedy" name='genre' value={fields.genre} onChange={handleInputChange}/>
+                </Form.Group> */}
+                <Form.Group>
+                    <Form.Label>Genre</Form.Label>
+
+                    <Form.Label
+                        className="me-sm-2"
+                        htmlFor="inlineFormCustomSelect"
+                        visuallyHidden
+                        >
+                        Select Genre
+                    </Form.Label>
+                    <Form.Select className="me-sm-2" id="inlineFormCustomSelect" name='genre' value={fields.genre} onChange={handleInputChange}>
+                        <option value="fiction">Fiction</option>
+                        <option value="non-fiction">Non-Fiction</option>
+                        <option value="kids-teens">Kids & Teen</option>
+                        <option value="adult">Adult</option>
+                        <option value="school">School</option>
+                    </Form.Select>
+                    <br></br>
+
                 </Form.Group>
-                <Form.Group controlId="formFile" className="mb-3">
-                    <Form.Label>Upload Image</Form.Label>
-                    <Form.Control type="file" />
+                <Form.Group className="mb-3">
+                    <Form.Label>Description</Form.Label>
+                        <FloatingLabel controlId="floatingTextarea2" label="Enter book synopsis, NO GREATER THAN 35 WORDS." style={{color:'grey'}}>
+                            <Form.Control id='description' name='description' value={fields.description} onChange={handleInputChange}
+                            as="textarea"
+                            placeholder="Leave a comment here"
+                            style={{ height: '100px' }}
+                            />
+                        </FloatingLabel>
+                </Form.Group>
+                
+                <Form.Group className="mb-3">
+                    <Form.Label>Image</Form.Label>
+                    <Form.Control placeholder="Image URL" name='imgURL' value={fields.imgURL} onChange={handleInputChange}/>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Price</Form.Label>
+                    <Form.Control placeholder="14.99" name='price' value={fields.price} onChange={handleInputChange}/>
                 </Form.Group>
             </Form>
+
+
             </Container>
 
             </div>
@@ -157,7 +222,7 @@ export const AddBooks = () => {
 
                         </div>
                         <div className='buttonPadding'>
-                            <Button variant='success' onClick={submit}>
+                            <Button variant='success'onClick={submit}>
                                 Submit
                             </Button>
                         </div>

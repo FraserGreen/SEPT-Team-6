@@ -77,9 +77,9 @@ public class BookService {
             return ResponseEntity.ok(new SearchResultsEmptyResponse(genre));
         }
 
-        Map<String, List<Book>> results = new HashMap<String, List<Book>>();
-        results.put("results", resultsList);
-        return ResponseEntity.ok(results);
+//        Map<String, List<Book>> results = new HashMap<String, List<Book>>();
+//        results.put("results", resultsList);
+        return ResponseEntity.ok(resultsList);
     }
 
     public ResponseEntity<?> getAllBooks() {

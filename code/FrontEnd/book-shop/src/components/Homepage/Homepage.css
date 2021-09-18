@@ -1,3 +1,41 @@
 .main-wrapper-home-page {
     padding-top: 20px;
 }
+
+.bookPrice
+{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.bookCardContent
+{
+    display:flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+.bookCardTitle
+{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.cards
+{
+    padding-top: 5%;
+}
+
+.sideBar
+{
+
+    padding-top: 3%;
+    padding-right: 15%;
+    max-width: 300px;
+    min-width: 300px;
+    min-height: page;
+}
+
+.container
+{
+    max-width: '50%';
+}

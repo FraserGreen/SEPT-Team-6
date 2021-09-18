@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 const axios = require('axios');
 
 
-export const Register = () => {
+export const RegisterBusiness = () => {
     const passwordLength = 6;
     const phoneLength = 10;
     const {fields, setFields, handleInputChange} = useForm({});
@@ -64,7 +64,9 @@ export const Register = () => {
             lastName: String(fields.lastName),
             address: String(fields.address),
             phone: String(fields.phone),
-            userType: "user",
+            userType: "business",
+            abn: String(fields.abn),
+            businessName: String(fields.businessName),
             password: String(fields.password),
             confirmPassword: String(fields.confirmPassword)
         }
@@ -88,6 +90,8 @@ export const Register = () => {
                     lastName: "",
                     address: "",
                     phone: "",
+                    abn: "",
+                    businessName: "",
                     password: "",
                     confirmPassword: ""
                 })
@@ -168,9 +172,18 @@ export const Register = () => {
 
                     <Form.Group className="mb-3" controlId="formPhone">
                         <Form.Label>Phone</Form.Label>
-                        <Form.Control type="text" placeholder="0438262941" name = 'phone' value = {fields.phone} onChange= {handleInputChange}/>
+                        <Form.Control type="text" placeholder="0438262941" name = 'address' value = {fields.phone} onChange= {handleInputChange}/>
                     </Form.Group>
 
+                    <Form.Group className="mb-3" controlId="formABN">
+                        <Form.Label>ABN</Form.Label>
+                        <Form.Control type="text" placeholder="51824753556 (11 digit number)" name = 'abn' value = {fields.abn} onChange= {handleInputChange}/>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBusinessName">
+                        <Form.Label>Business Name</Form.Label>
+                        <Form.Control type="text" placeholder="Lars Janus' Books" name = 'businessName' value = {fields.businessName} onChange= {handleInputChange}/>
+                    </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
@@ -182,16 +195,11 @@ export const Register = () => {
                         <Form.Control type="password" placeholder="Password" name='confirmPassword' value={fields.confirmPassword} onChange={handleInputChange}/>
                     </Form.Group>
           
-        
-                    <div>
-                        <NavLink to='/register/business'>
-                            Are you a business? Register here
-                        </NavLink>
-                    </div>
                     <br></br>
                     <Button variant="primary" type="submit" onClick={submit}>
                         Submit
                     </Button>
+                    <br></br>
                 </Form>
             </Container>
             

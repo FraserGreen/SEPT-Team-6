@@ -24,7 +24,7 @@ export const Management = () => {
                     <Col>
                         <div className='buttonCustom'>
                             <Card tag='a' onClick={goToBookManagement} style={{cursor: 'pointer'}}>
-                            <Card.Img variant="top" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
+                            <Card.Img variant="top" src="https://www.iconpacks.net/icons/2/free-opened-book-icon-3163-thumb.png" />
                             <Card.Body>
                             <Card.Text className='text-center'>
                                 Manage Books
@@ -36,7 +36,7 @@ export const Management = () => {
                     <Col>
                         <div className='buttonCustom'>
                             <Card tag='a' onClick={goToUserManagement} style={{cursor:'pointer'}}>
-                            <Card.Img variant="top" src="https://www.iconpacks.net/icons/2/free-opened-book-icon-3163-thumb.png" />
+                            <Card.Img variant="top" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
 
                             <Card.Body>
                             <Card.Text className='text-center'>

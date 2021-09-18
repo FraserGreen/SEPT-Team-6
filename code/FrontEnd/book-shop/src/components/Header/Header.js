@@ -10,6 +10,7 @@ import { render } from '@testing-library/react'
 
 export const Header = () => {
     const {loggedIn, logoutSessionUser} = useSessionUser();
+    const {userType} = useSessionUser();
     // const sessionUser = getSessionUser()
     // const sessionUser = JSON.parse(localStorage.getItem(SESSION_USER));
     const history = useHistory();
@@ -22,6 +23,7 @@ export const Header = () => {
         history.push("/");
 
     }
+
     return (
         <div>
         {
@@ -33,34 +35,43 @@ export const Header = () => {
                         <div className='padding'>
                                 <Button variant="secondary" onClick={logout} >Logout</Button>{' '}    
                         </div>
-
-                        <div className = 'padding'>
-                        <NavLink to = "/management">
-                            <Button variant="secondary">Management</Button>{' '}    
-                        </NavLink>
-                        </div>
+                        {
+                        userType.admin
+                        ?
+                        (
+                            <div className = 'padding'>
+                                <NavLink to = "/management">
+                                    <Button variant="secondary">Management</Button>{' '}    
+                                </NavLink>
+                            </div>
+                        )
+                        :
+                            <div></div>
+                        }   
+              
                     </div>
                 </Container>
             </div>)
             :
-            <div className='header-style'>
-            <Container>
-                <div className = 'main-wrapper'>
-                    <div className = 'padding'>
-                        <NavLink to = "/login">
-                            <Button variant="secondary">Sign in</Button>{' '}    
-                        </NavLink>
+            (
+                <div className='header-style'>
+                <Container>
+                    <div className = 'main-wrapper'>
+                        <div className = 'padding'>
+                            <NavLink to = "/login">
+                                <Button variant="secondary">Sign in</Button>{' '}    
+                            </NavLink>
+                        </div>
+                        <div className = 'padding'>
+                            <NavLink to = "/register">
+                                <Button variant="secondary">Register</Button>{' '}
+                            </NavLink>
+                        </div>
                     </div>
-                    <div className = 'padding'>
-                        <NavLink to = "/register">
-                            <Button variant="secondary">Register</Button>{' '}
-                        </NavLink>
-                    </div>
+                </Container>
                 </div>
-
-            </Container>
-        </div>
-
+                
+            )
         }
         </div>
 
