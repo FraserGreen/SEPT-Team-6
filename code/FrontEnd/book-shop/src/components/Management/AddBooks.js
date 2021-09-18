@@ -14,6 +14,7 @@ export const AddBooks = () => {
     const maxWords = 35;
 
     const {fields, setFields, handleInputChange} = useForm({});
+    const [genreValue, setGenre] = useState('Fiction');
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState({
         success:false,
@@ -63,7 +64,7 @@ export const AddBooks = () => {
             isbn: String(fields.isbn),
             title: String(fields.title),
             author: String(fields.author),
-            genre: String(fields.genre),
+            genre: String(genreValue),
             description: String(fields.description),
             imgURL: String(fields.imgURL),
             price: String(fields.price)
@@ -174,13 +175,16 @@ export const AddBooks = () => {
                         >
                         Select Genre
                     </Form.Label>
-                    <Form.Select className="me-sm-2" id="inlineFormCustomSelect" name='genre' value={fields.genre} onChange={handleInputChange}>
+                    <Form.Control as ="select" name='genre' value={genreValue} onChange={e=> {
+                        setGenre(e.target.value);
+                        console.log(e.target.value);
+                    }}>
                         <option value="fiction">Fiction</option>
                         <option value="non-fiction">Non-Fiction</option>
                         <option value="kids-teens">Kids & Teen</option>
                         <option value="adult">Adult</option>
                         <option value="school">School</option>
-                    </Form.Select>
+                    </Form.Control>
                     <br></br>
 
                 </Form.Group>
