@@ -1,0 +1,29 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/java:8-jdk
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      - run:
+          name: loginmicroservices
+          command: |
+            cd ~/project/code/BackEnd/loginmicroservices/
+            source mvnw package
+            docker build -t loginmicroservices .
+
+      - run:
+          name: bookmicroservices
+          command: |
+            cd ~/project/code/BackEnd/bookmicroservices/
+            source mvnw package
+            docker build -t bookmicroservices .
+
+      - run:
+          name: frontend
+          command: |
+            cd ~/project/code/FrontEnd/book-shop/
+            docker build -t frontend .
