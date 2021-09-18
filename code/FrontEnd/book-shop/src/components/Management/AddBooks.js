@@ -65,7 +65,7 @@ export const AddBooks = () => {
             author: String(fields.author),
             genre: String(fields.genre),
             description: String(fields.description),
-            imgURL: String(fields.imageURL),
+            imgURL: String(fields.imgURL),
             price: String(fields.price)
         };
 
