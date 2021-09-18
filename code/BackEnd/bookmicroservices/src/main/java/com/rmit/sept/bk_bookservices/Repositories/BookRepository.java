@@ -15,6 +15,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     List<Book> findByTitleIgnoreCaseContainsOrderByTitleAsc(String title);
     List<Book> findByAuthorIgnoreCaseContainsOrderByTitleAsc(String author);
     List<Book> findByGenreIgnoreCaseContainsOrderByTitleAsc(String genre);
-
+    List<Book> findAll();
     List<Book> findAllByOrderByTitleAsc();
 }
