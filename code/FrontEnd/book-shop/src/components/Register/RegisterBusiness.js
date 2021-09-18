@@ -172,7 +172,7 @@ export const RegisterBusiness = () => {
 
                     <Form.Group className="mb-3" controlId="formPhone">
                         <Form.Label>Phone</Form.Label>
-                        <Form.Control type="text" placeholder="0438262941" name = 'address' value = {fields.phone} onChange= {handleInputChange}/>
+                        <Form.Control type="text" placeholder="0438262941" name = 'phone' value = {fields.phone} onChange= {handleInputChange}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formABN">
