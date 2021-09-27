@@ -108,7 +108,7 @@ export const Genre = () => {
         return (
             <div>
                 <Container>
-                    <Row>
+                    <Row className='row justify-content-center'>
                         {booksDisplay}
                     </Row>
                 </Container>

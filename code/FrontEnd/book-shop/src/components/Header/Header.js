@@ -1,12 +1,12 @@
 import React from 'react'
 import "./Header.css"
-import {Button, Col} from 'react-bootstrap'
-import {Container, Row} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import { SESSION_USER } from '../constants'
 import { useSessionUser } from '../../Hooks/useSessionUser'
 import { useHistory } from 'react-router-dom'
-import { render } from '@testing-library/react'
+
 
 export const Header = () => {
     const {loggedIn, logoutSessionUser} = useSessionUser();
