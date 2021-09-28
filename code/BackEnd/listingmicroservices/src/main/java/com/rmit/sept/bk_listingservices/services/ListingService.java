@@ -21,7 +21,8 @@ public class ListingService {
     private ListingRepository listingRepository;
 
 
-    public Listing saveListing(Listing newListing){
+    public Listing saveListing(Listing newListing, boolean sold) {
+        newListing.setSold(sold);
         return listingRepository.save(newListing);
     }
 
@@ -34,11 +35,11 @@ public class ListingService {
     public ResponseEntity<?> getListingsByBookId(Long bookId) {
         Map<String, List<Listing>> listings = new HashMap<String, List<Listing>>();
 
-        List<Listing> typeNew = listingRepository.findByBookIdAndTypeOrderByPriceAsc(bookId, "new");
+        List<Listing> typeNew = listingRepository.findByBookIdAndTypeAndSoldIsFalseOrderByPriceAsc(bookId, "new");
         if (!typeNew.isEmpty()) {
             listings.put("new", typeNew);
         }
-        List<Listing> typeUsed = listingRepository.findByBookIdAndTypeOrderByPriceAsc(bookId, "used");
+        List<Listing> typeUsed = listingRepository.findByBookIdAndTypeAndSoldIsFalseOrderByPriceAsc(bookId, "used");
         if (!typeUsed.isEmpty()) {
             listings.put("used", typeUsed);
         }
@@ -60,6 +61,11 @@ public class ListingService {
         }
 
         return ResponseEntity.ok(listings);
+    }
+
+    public Listing markListingAsSold(Long id) {
+        Listing listing = getListing(id);
+        return saveListing(listing, true);
     }
 
 }

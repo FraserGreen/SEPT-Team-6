@@ -39,7 +39,7 @@ public class ListingController {
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if (errorMap != null) return errorMap;
 
-        Listing newListing = listingService.saveListing(listing);
+        Listing newListing = listingService.saveListing(listing, false);
 
         return new ResponseEntity<Listing>(newListing, HttpStatus.CREATED);
     }
@@ -71,6 +71,17 @@ public class ListingController {
         if (errorMap != null) return errorMap;
 
         return listingService.getListingsBySeller(listingsBySellerRequest.getSeller());
+    }
+
+
+    @PostMapping("/marklistingassold")
+    public ResponseEntity<?> markListingAsSold(@Valid @RequestBody GetListingRequest listingRequest, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) return errorMap;
+
+        Listing listing = listingService.markListingAsSold(listingRequest.getId());
+
+        return new ResponseEntity<Listing>(listing, HttpStatus.OK);
     }
 
 

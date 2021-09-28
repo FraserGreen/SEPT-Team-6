@@ -25,6 +25,7 @@ public class Listing {
     @NotNull(message = "price is required")
     @Positive(message = "price must be positive")
     private Double price;
+    private Boolean sold;
 
     private Date create_At;
     private Date update_At;
@@ -50,6 +51,10 @@ public class Listing {
     public Double getPrice() { return price; }
 
     public void setPrice(Double price) { this.price = price; }
+
+    public Boolean getSold() { return sold; }
+
+    public void setSold(Boolean sold) { this.sold = sold; }
 
     public Date getCreate_At() {
         return create_At;

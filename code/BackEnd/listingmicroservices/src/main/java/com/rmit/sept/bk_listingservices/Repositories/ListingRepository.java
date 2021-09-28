@@ -11,6 +11,6 @@ public interface ListingRepository extends CrudRepository<Listing, Long> {
 
     Listing getById(Long id);
 
-    List<Listing> findByBookIdAndTypeOrderByPriceAsc(Long bookId, String type);
+    List<Listing> findByBookIdAndTypeAndSoldIsFalseOrderByPriceAsc(Long bookId, String type);
     List<Listing> findBySellerOrderByIdDesc(String seller);
 }
