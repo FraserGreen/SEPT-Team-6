@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.rmit.sept.bk_listingservices</groupId>
-    <artifactId>bookmicroservices</artifactId>
+    <artifactId>listingmicroservices</artifactId>
     <version>0.0.1</version>
     <name>bk_listingservices</name>
     <description>Demo project for Spring Boot</description>
