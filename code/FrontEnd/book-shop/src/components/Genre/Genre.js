@@ -16,6 +16,7 @@ export const Genre = () => {
     const { genreParam } = useParams();
     const [books, setBooks] = useState();
 
+
     const populateData = async () =>
     {
         try

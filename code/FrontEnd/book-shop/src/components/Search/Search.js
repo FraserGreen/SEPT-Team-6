@@ -13,6 +13,8 @@ export const Search = () => {
     const {searchInput} = useParams();
 
     const[books, setBooks] = useState();
+    const[searchType, setSearchType] = useState()
+
 
     const changeURL = (bookId) => {
 
@@ -27,11 +29,11 @@ export const Search = () => {
             const config = 
             {
                 headers: {
-                    Accept: 'application/json',
+                    // Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    // 'Access-Control-Allow-Origin': '*'
                 },
-                withCredentials:true
+                // withCredentials:true
             }
 
             const searchRequest = {
@@ -50,11 +52,39 @@ export const Search = () => {
     }
 
     useEffect(() => {
+        console.log("useEffect")
         async function fetchData() {
+            console.log("fetch data")
             const bookData = await populateData();
-            if (!bookData)
+            if (!bookData.results)
             {
-                setBooks(bookData)
+                if (bookData.author)
+                {
+                    setSearchType("Authors")
+                    setBooks(bookData.author)
+                }
+
+                if (bookData.title)
+                {
+                    setSearchType("Titles")
+                    setBooks(bookData.title)
+                }
+                
+                if (bookData.isbn)
+                {
+                    setSearchType("ISBN")
+
+                    setBooks(bookData.isbn)
+                }
+
+                if (bookData.genre)
+                {
+                    setSearchType("Genres")
+
+                    setBooks(bookData.genre)
+                }
+
+
             }
             else
             {
@@ -72,7 +102,7 @@ export const Search = () => {
                 return (
                     <Col>
                         <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '15rem', height:'20rem', maxHeight:'20rem', cursor:'pointer'}} >
-                            <Card.Img variant="top" src={book.imgURL} style={{height:'25vh'}} />
+                            <Card.Img variant="top" src={book.imgURL} style={{height:'25rem'}} />
                                 <div className='bookCardContent'>
 
                                     <Card.Body>
@@ -99,6 +129,12 @@ export const Search = () => {
             <div>
                 <Container>
                     <Row>
+                        <h1>
+                            Search results for: "{searchInput}" found in {searchType}
+                        </h1>
+                    </Row>
+                    <br/>
+                    <Row>
                         {booksDisplay}
                     </Row>
                 </Container>
@@ -109,7 +145,13 @@ export const Search = () => {
     {
         return (
             <div>
-                
+                <Container>
+                <h1>
+                    No results found for '{searchInput}'
+                </h1>
+                <br/>
+
+                </Container>
             </div>
         )
     }
