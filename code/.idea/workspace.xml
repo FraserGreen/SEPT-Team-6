@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3470ebda-8514-40c0-9b0a-dd35c75b2dfb" name="Default Changelist" comment="" />
+    <list default="true" id="3470ebda-8514-40c0-9b0a-dd35c75b2dfb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/book-shop/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/book-shop/node_modules/.cache/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/book-shop/src/components/Genre/Genre.js" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/book-shop/src/components/Genre/Genre.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/book-shop/src/components/Homepage/Homepage.js" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/book-shop/src/components/Homepage/Homepage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrontEnd/book-shop/src/components/Search/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/book-shop/src/components/Search/Search.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,7 +105,7 @@
       <workItem from="1633013226517" duration="92000" />
       <workItem from="1633013333201" duration="234000" />
       <workItem from="1633013648871" duration="521000" />
-      <workItem from="1633014199077" duration="45000" />
+      <workItem from="1633014199077" duration="1678000" />
     </task>
     <servers />
   </component>

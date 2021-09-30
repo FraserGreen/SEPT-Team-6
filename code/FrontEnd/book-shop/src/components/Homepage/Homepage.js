@@ -62,11 +62,11 @@ export const Homepage = () => {
     const bookDisplay = books.map(book => {
         return (
 
-            <Col class='col-lg-6'>
+            <Col class='col-lg-6' md='auto'>
             <div className = 'cards'>
 
                 <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '15rem', height:'20rem', cursor:'pointer'}} >
-                <Card.Img variant="top" src={book.imgURL} style={{height:'25rm'}} />
+                <Card.Img variant="top" src={book.imgURL} style={{height:'25vh'}} />
                     <div className='bookCardContent'>
 
                         <Card.Body>

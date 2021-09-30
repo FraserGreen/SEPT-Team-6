@@ -81,7 +81,7 @@ export const Genre = () => {
         // {
         const booksDisplay = books.map(book => {
             return (
-                <Col>
+                <Col md='auto'>
                     <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '15rem', height:'20rem', maxHeight:'20rem', cursor:'pointer'}} >
                         <Card.Img variant="top" src={book.imgURL} style={{height:'25vh'}} />
                             <div className='bookCardContent'>
@@ -108,9 +108,11 @@ export const Genre = () => {
         return (
             <div>
                 <Container>
+                    <div>
                     <Row>
                         {booksDisplay}
                     </Row>
+                    </div>
                 </Container>
             </div>
         )
