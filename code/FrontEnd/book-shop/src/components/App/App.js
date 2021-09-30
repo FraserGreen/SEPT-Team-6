@@ -16,6 +16,7 @@ import { AddBooks } from '../Management/AddBooks';
 import { Book } from '../Book/Book';
 import { RegisterBusiness } from '../Register/RegisterBusiness';
 import { Genre } from '../Genre/Genre';
+import { Search } from '../Search/Search';
 
 
 
@@ -36,6 +37,7 @@ function App()
             <Route path="/register" component={()=> <Register/>}/>
             <Route path="/book/:bookID" component={() => <Book/>}/>
             <Route path="/genre/:genreParam" component={() => <Genre/>}/>
+            <Route path="/search/:searchInput" component={() => <Search/>}/>
             <Route path="/management/books/add" component={()=> <AddBooks/>}/>
             <Route path="/management/books" component={()=> <ManageBooks/>}/>
             <Route path="/management/users" component={()=> <ManageUsers/>}/>

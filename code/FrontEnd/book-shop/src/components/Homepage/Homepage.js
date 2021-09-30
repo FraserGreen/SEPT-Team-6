@@ -66,7 +66,7 @@ export const Homepage = () => {
             <div className = 'cards'>
 
                 <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '15rem', height:'20rem', cursor:'pointer'}} >
-                <Card.Img variant="top" src={book.imgURL} style={{height:'25vh'}} />
+                <Card.Img variant="top" src={book.imgURL} style={{height:'25rm'}} />
                     <div className='bookCardContent'>
 
                         <Card.Body>

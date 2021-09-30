@@ -15,7 +15,6 @@ export const Genre = () => {
     const history = useHistory();
     const { genreParam } = useParams();
     const [books, setBooks] = useState();
-    const [dataLoaded, setDataLoaded] = useState(false);
 
     const populateData = async () =>
     {

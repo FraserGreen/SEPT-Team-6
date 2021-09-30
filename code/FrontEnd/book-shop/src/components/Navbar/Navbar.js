@@ -2,20 +2,12 @@
 import React from 'react'
 import { Col, Container, Nav, Row } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
-import { Navbar} from 'react-bootstrap'
-import { Button } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+
 import './Navbar.css';
 
 
 export const NavigationBar = () => {
-    const history = useHistory();
 
-    const changeURL = (genre) => {
-
-        history.push("/genre/"+ genre)
-    }
-    
     return (
         <div className='categories'>
             <br></br>
