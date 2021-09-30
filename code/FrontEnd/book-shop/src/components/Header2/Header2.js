@@ -37,7 +37,12 @@ export const Header2 = () => {
                             aria-label="Search"
                             value = {searchInput}
                             onChange={event=>setSearch(event.target.value)}
-                            
+                            onKeyPress={event=> {
+                                if (event.key == "Enter")
+                                {
+                                    changeURL()
+                                }
+                            }}
                         />
                         <Button onClick={changeURL} variant="outline-success">Search</Button>
                         </Form>

@@ -63,67 +63,82 @@ export const Book = () => {
 
     }, [dataLoaded, book])
 
-    return (
-        <div>
-            <Container>
-                <Row>
-                    <div className='layout'>
-                        <div className='imageContainer'>
-                        <Image fluid src= {book.imgURL}>
-                        </Image>
-                        </div>
-                        
-                        <div className='content'>
-                            <div className='title'>
-                                {book.title}
+    if (book)
+    {
+        return (
+            <div>
+                <Container>
+                    <Row>
+                        <div className='layout'>
+                            <div className='imageContainer'>
+                            <Image fluid src= {book.imgURL}>
+                            </Image>
                             </div>
-
-                            <div className='author'>
-                                By: {book.author}
-                            </div>
-
-                            <ColouredLine color='black'/>
-                            <span>
-                                <strong>
-                                    ISBN: 
-                                </strong>
-                            </span>{' '}
-                            {book.isbn}
-                            <br/>
                             
-                                <strong>
-                                    Description: 
-                                </strong>
-                             <br/>
-                            {book.description}
+                            <div className='content'>
+                                <div className='title'>
+                                    {book.title}
+                                </div>
 
-                        </div>  
+                                <div className='author'>
+                                    By: {book.author}
+                                </div>
 
-                        <div className='buyContainer'>
-                            <div className='price'>
+                                <ColouredLine color='black'/>
+                                <span>
+                                    <strong>
+                                        ISBN: 
+                                    </strong>
+                                </span>{' '}
+                                {book.isbn}
+                                <br/>
+                                
+                                    <strong>
+                                        Description: 
+                                    </strong>
+                                <br/>
+                                {book.description}
 
-                                $
-                                {book.price}
+                            </div>  
+
+                            <div className='buyContainer'>
+                                <div className='price'>
+
+                                    $
+                                    {book.price}
+
+                                </div>
+                                <Container>
+                                    <Row>
+                                        <div className='buttonBuy'>
+                                            <Col class='col text-center'>
+                                                <Button style={{fontSize:'30px', backgroundColor:'cadetblue', borderColor:'cadetblue', minWidth:'90%'}}variant="primary">
+                                                    BUY NOW
+                                                </Button>
+                                            </Col>
+                                        </div>
+                                    </Row>
+                                </Container>
+
 
                             </div>
-                            <Container>
-                                <Row>
-                                    <div className='buttonBuy'>
-                                        <Col class='col text-center'>
-                                            <Button style={{fontSize:'30px', backgroundColor:'cadetblue', borderColor:'cadetblue', minWidth:'90%'}}variant="primary">
-                                                BUY NOW
-                                            </Button>
-                                        </Col>
-                                    </div>
-                                </Row>
-                            </Container>
-
 
                         </div>
-
-                    </div>
-                </Row>
-            </Container>
-        </div>
-    )
+                    </Row>
+                </Container>
+            </div>
+        )
+        }
+    else
+    {
+        return (
+            <div>
+                <Container>
+                <h1>
+                    Book with ID '{bookID}' not found
+                </h1>
+                </Container>
+            </div>
+        )
+    }
 }
