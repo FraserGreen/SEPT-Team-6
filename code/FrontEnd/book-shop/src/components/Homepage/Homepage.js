@@ -65,8 +65,8 @@ export const Homepage = () => {
             <Col class='col-lg-6'>
             <div className = 'cards'>
 
-                <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '18rem', height:'20rem', cursor:'pointer'}} >
-                <Card.Img variant="top" src={book.imgURL} />
+                <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '15rem', height:'20rem', cursor:'pointer'}} >
+                <Card.Img variant="top" src={book.imgURL} style={{height:'25vh'}} />
                     <div className='bookCardContent'>
 
                         <Card.Body>

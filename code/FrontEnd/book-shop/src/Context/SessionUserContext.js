@@ -75,7 +75,6 @@ export const SessionUserProvider = ({children}) => {
 
     const logoutSessionUser = () => {
         localStorage.setItem(SESSION_USER, "");
-        // localStorage.setItem(USER_TYPE, "");
         setSessionUser({username:""})
         setLoggedIn(false)
     }
