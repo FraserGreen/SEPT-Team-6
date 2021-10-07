@@ -17,7 +17,7 @@ export const Header2 = () => {
         }
     }
     return (
-        <div>
+        <div className='header2'>
             <Container>
                 <Row>
                     <Col>
@@ -27,25 +27,29 @@ export const Header2 = () => {
                         </h1>
                         </NavLink>
                     </Col>
-                
-                    <Col>
-                        <Form className="d-flex">
-                        <FormControl
-                            type="search"
-                            placeholder="Search"
-                            className="mr-2"
-                            aria-label="Search"
-                            value = {searchInput}
-                            onChange={event=>setSearch(event.target.value)}
-                            onKeyPress={event=> {
-                                if (event.key == "Enter")
-                                {
-                                    changeURL()
-                                }
-                            }}
-                        />
-                        <Button onClick={changeURL} variant="outline-success">Search</Button>
-                        </Form>
+
+                    <Col md={6}>
+                        <br/>
+                        <span>
+
+                            <Form className="d-flex">
+                            <FormControl
+                                type="search"
+                                placeholder="Search"
+                                className="mr-2"
+                                aria-label="Search"
+                                value = {searchInput}
+                                onChange={event=>setSearch(event.target.value)}
+                                onKeyPress={event=> {
+                                    if (event.key == "Enter")
+                                    {
+                                        changeURL()
+                                    }
+                                }}
+                            />
+                            <Button onClick={changeURL} variant="outline-success">Search</Button>
+                            </Form>
+                        </span> 
                     </Col>
               
                 </Row>

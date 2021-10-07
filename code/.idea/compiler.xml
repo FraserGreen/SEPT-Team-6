@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="bookmicroservices" />
+        <module name="listingmicroservices" />
         <module name="loginmicroservices" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bookmicroservices" target="1.8" />
+      <module name="listingmicroservices" target="1.8" />
       <module name="loginmicroservices" target="1.8" />
       <module name="wrapper (1)" target="1.5" />
       <module name="wrapper (2)" target="1.5" />
@@ -20,6 +22,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="bookmicroservices" options="-parameters" />
+      <module name="listingmicroservices" options="-parameters" />
       <module name="loginmicroservices" options="-parameters" />
     </option>
   </component>

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { SESSION_USER, USER_TYPE } from "../components/constants"
+import { SESSION_USER } from "../components/constants"
 import { useEffect } from "react"
 
 

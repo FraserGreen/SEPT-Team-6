@@ -3,7 +3,6 @@ import "./Header.css"
 import {Button} from 'react-bootstrap'
 import {Container} from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
-import { SESSION_USER } from '../constants'
 import { useSessionUser } from '../../Hooks/useSessionUser'
 import { useHistory } from 'react-router-dom'
 
@@ -11,16 +10,20 @@ import { useHistory } from 'react-router-dom'
 export const Header = () => {
     const {loggedIn, logoutSessionUser} = useSessionUser();
     const {userType} = useSessionUser();
-    // const sessionUser = getSessionUser()
-    // const sessionUser = JSON.parse(localStorage.getItem(SESSION_USER));
     const history = useHistory();
 
     const logout = (event) => {
         event.preventDefault();
-        // localStorage.removeItem(SESSION_USER);
-        // console.log(sessionUser);
+
         logoutSessionUser();
         history.push("/");
+
+    }
+
+    const myBooks = (event) => {
+        event.preventDefault();
+
+        history.push("/my-listings");
 
     }
 
@@ -32,8 +35,16 @@ export const Header = () => {
             (<div className='header-style'>
                 <Container>
                     <div className='main-wrapper'>
-                        <div className='padding'>
+                        <div style={{float:'left'}}>
+                            <NavLink to = "/about-us">
+                                <Button variant="secondary">About Us</Button>{' '}    
+                            </NavLink>
+                        </div>
+                        <div className='padding' style={{float:'right', flexDirection:'row-reverse'}}>
                                 <Button variant="secondary" onClick={logout} >Logout</Button>{' '}    
+                        </div>
+                        <div className='padding' style={{float:'right', flexDirection:'row-reverse'}}>
+                                <Button variant="secondary" onClick={myBooks} >My Listings</Button>{' '}    
                         </div>
                         {
                         userType.admin
@@ -57,6 +68,11 @@ export const Header = () => {
                 <div className='header-style'>
                 <Container>
                     <div className = 'main-wrapper'>
+                        <div  style={{float:'left'}}>
+                            <NavLink to = "/about-us">
+                                <Button variant="secondary">About Us</Button>{' '}    
+                            </NavLink>
+                        </div>
                         <div className = 'padding'>
                             <NavLink to = "/login">
                                 <Button variant="secondary">Sign in</Button>{' '}    

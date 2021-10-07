@@ -1,20 +1,21 @@
 import React, {useState, useEffect} from 'react'
-import {data} from "../../data/Data"
+
 import {Card, Row} from 'react-bootstrap'
 import { Col, Container} from 'react-bootstrap'
 import { HomepageList } from './HomepageList'
 import { NavLink, useHistory} from 'react-router-dom'
 
 import './Homepage.css'
+import { useSessionUser } from '../../Hooks/useSessionUser'
 
 
 const axios = require("axios")
 export const Homepage = () => {
 
     const history = useHistory();
-
+    const {logoutSessionUser} = useSessionUser();
     const[dataLoaded, setDataLoaded] = useState(false)
-    const [books, setBooks] = useState(data)
+    const [books, setBooks] = useState()
 
     const populateData = async () => 
     {
@@ -45,7 +46,7 @@ export const Homepage = () => {
         async function fetchData(){
             if(dataLoaded === false){
                 const booksData = await populateData()
-                console.log(booksData)
+                console.log("BOO", booksData)
                 setBooks(booksData)
                 setDataLoaded(true)
             }
@@ -59,68 +60,77 @@ export const Homepage = () => {
         history.push("/book/"+ bookId)
     }
     
-    const bookDisplay = books.map(book => {
-        return (
-
-            <Col class='col-lg-6' md='auto'>
-            <div className = 'cards'>
-
-                <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '15rem', height:'20rem', cursor:'pointer'}} >
-                <Card.Img variant="top" src={book.imgURL} style={{height:'25vh'}} />
-                    <div className='bookCardContent'>
-
-                        <Card.Body>
-                            <Card.Title>
-                            <div className='bookCardTitle'>
-                                {book.title}
-                            </div>
-                            </Card.Title>
-                            <Card.Text>
-                                <div className='bookPrice'>
-                                    ${book.price}
+    if (books)
+    {
+        const bookDisplay = books.map(book => {
+            return (
+    
+                <Col class='col-lg-6' md='auto'>
+                <div className = 'cards'>
+    
+                    <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '15rem', height:'22rem', maxHeight:'22rem', cursor:'pointer'}} >
+                    <Card.Img variant="top" src={book.imgURL} style={{height:'100%'}} />
+                        {/* <div className='bookCardContent'>
+    
+                            <Card.Body>
+                                <Card.Title>
+                                <div className='bookCardTitle'>
+                                    {book.title}
                                 </div>
-                            </Card.Text>
-                        </Card.Body>
+                                </Card.Title>
+                                <Card.Text>
+                                    <div className='bookPrice'>
+                                        $N.A
+                                    </div>
+                                </Card.Text>
+                            </Card.Body>
+                        </div> */}
+    
+                    </Card>
                     </div>
-
-                </Card>
+    
+                </Col>
+    
+    
+            )
+        })
+    
+        return (
+            <div>
+                <div className='main-wrapper-home-page'>
+    
+                    <Container>
+                        <Row className='justify-content-md-center'>
+                        <Col md='auto'>
+                            <div className='sideBar'>
+                                 <HomepageList/>
+                            </div>
+                        </Col>
+    
+                        <Col>
+                            <Container>    
+                                <Row>  
+                                    {bookDisplay}
+                                </Row>
+                            </Container>
+                        </Col>
+                        </Row>
+                    </Container>
+    
+    
                 </div>
-
-            </Col>
-
-
+            </div>   
+    
         )
-    })
+    }
 
-    return (
-        <div>
-            <div className='main-wrapper-home-page'>
-
-                <Container>
-                    <Row className='justify-content-md-center'>
-                    <Col md='auto'>
-                        <div className='sideBar'>
-                             <HomepageList/>
-                        </div>
-                    </Col>
-
-                    <Col>
-                        <Container>    
-                            <Row>  
-                                {bookDisplay}
-                            </Row>
-                        </Container>
-                    </Col>
-                    </Row>
-                </Container>
-
-
+    else
+    {
+        return (
+            <div>
+                    
             </div>
-        </div>
+        )
+    }
 
-
-
-            
-
-    )
 }

@@ -47,8 +47,8 @@ export const ManageBooks = () => {
                 <td>{book.id}</td>
                 <td>{book.title}</td>
                 <td>{book.author}</td>
-                <td>
-                    ${book.price}
+                {/* <td>
+                    ${book.price} */}
                 {/* <Form>
                     <Form.Label
                         className="me-sm-2"
@@ -63,7 +63,7 @@ export const ManageBooks = () => {
                         <option value="2">Rejected</option>
                     </Form.Select>
                 </Form> */}
-                </td>
+                {/* </td> */}
         
                 </tr>
             
@@ -86,9 +86,9 @@ export const ManageBooks = () => {
                     <Col>
                         <div className='addBook'>
                             <NavLink to = "/management/books/add">
-                            <Button variant ='success' style={{width:'100px'}}>
-                                Add
-                            </Button>
+                                <Button variant ='success' style={{width:'100px'}}>
+                                    Add
+                                </Button>
                             </NavLink>
                         </div>
                     </Col>
@@ -102,7 +102,7 @@ export const ManageBooks = () => {
                         <th>Book ID</th>
                         <th>Title</th>
                         <th>Author</th>
-                        <th>Price</th>
+                        {/* <th>Price</th> */}
 
                         </tr>
                     </thead>

@@ -1,6 +1,19 @@
 .logo {
-    font-size: xx-large;
+    font-size: 70px;
     color: cadetblue;
+}
+
+.header2 {
+    /* background-color: cadetblue; */
+
+}
+
+.search {
+    display:flex;
+    /* float:center; */
+    flex-direction: column-reverse;
+    
+    margin-top: auto;
 }
 
 

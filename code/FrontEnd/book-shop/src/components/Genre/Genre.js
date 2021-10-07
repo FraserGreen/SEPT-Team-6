@@ -82,9 +82,9 @@ export const Genre = () => {
         const booksDisplay = books.map(book => {
             return (
                 <Col md='auto'>
-                    <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '15rem', height:'20rem', maxHeight:'20rem', cursor:'pointer'}} >
-                        <Card.Img variant="top" src={book.imgURL} style={{height:'25vh'}} />
-                            <div className='bookCardContent'>
+                    <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '15rem', height:'22rem', maxHeight:'22rem', cursor:'pointer'}} >
+                        <Card.Img variant="top" src={book.imgURL} style={{height:'100%'}} />
+                            {/* <div className='bookCardContent'>
 
                                 <Card.Body>
                                     <Card.Title>
@@ -98,7 +98,7 @@ export const Genre = () => {
                                         </div>
                                     </Card.Text>
                                 </Card.Body>
-                            </div>
+                            </div> */}
 
                         </Card>
                 </Col>

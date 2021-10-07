@@ -17,6 +17,8 @@ import { Book } from '../Book/Book';
 import { RegisterBusiness } from '../Register/RegisterBusiness';
 import { Genre } from '../Genre/Genre';
 import { Search } from '../Search/Search';
+import { MyListings } from '../My-Listings/MyListings';
+import { CreateListing } from '../CreateListing/CreateListing';
 
 
 
@@ -42,6 +44,8 @@ function App()
             <Route path="/management/books" component={()=> <ManageBooks/>}/>
             <Route path="/management/users" component={()=> <ManageUsers/>}/>
             <Route path="/management" component={()=> <Management/>}/>
+            <Route path="/create-listing" component={()=> <CreateListing/>}/>
+            <Route path="/my-listings" component={()=> <MyListings/>}/>
             <Route path="/" component={()=> <Homepage/> }/>
           </Switch>
         </Router>
