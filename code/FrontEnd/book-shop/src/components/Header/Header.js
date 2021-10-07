@@ -73,12 +73,12 @@ export const Header = () => {
                                 <Button variant="secondary">About Us</Button>{' '}    
                             </NavLink>
                         </div>
-                        <div className = 'padding'>
+                        <div className = 'padding' style={{float:'right', flexDirection:'row-reverse'}}>
                             <NavLink to = "/login">
                                 <Button variant="secondary">Sign in</Button>{' '}    
                             </NavLink>
                         </div>
-                        <div className = 'padding'>
+                        <div className = 'padding' style={{float:'right', flexDirection:'row-reverse'}}>
                             <NavLink to = "/register">
                                 <Button variant="secondary">Register</Button>{' '}
                             </NavLink>
