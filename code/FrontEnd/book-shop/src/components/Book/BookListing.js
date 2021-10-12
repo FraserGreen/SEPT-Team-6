@@ -72,49 +72,56 @@ export const BookListing = ({bookID}) => {
                         let dataNew = []
                         let dataUsed = []
 
-
-                        for(const listing of listingsData.new){
-                            let listingItem = {
-                                id:listing.id,
-                                seller:listing.seller,
-                                type:listing.type,
-                                price:listing.price,
-                                sold:listing.sold
-                                
-                            }
-
-                            if(listing.bookId === bookData.id){
-                                listingItem = {
-                                    ...listingItem, 
-                                    title:bookData.title,
-                                    author:bookData.author
+                        if (listingsData.new)
+                        {
+                            for(const listing of listingsData.new){
+                                let listingItem = {
+                                    id:listing.id,
+                                    seller:listing.seller,
+                                    type:listing.type,
+                                    price:listing.price,
+                                    sold:listing.sold
+                                    
                                 }
-
-                                dataNew.push(listingItem)
-                            }
-
-                        }
-
-                        for(const listing of listingsData.used){
-                            let listingItem = {
-                                id:listing.id,
-                                seller:listing.seller,
-                                type:listing.type,
-                                price:listing.price,
-                                sold:listing.sold
-                                
-                            }
-
+    
                                 if(listing.bookId === bookData.id){
                                     listingItem = {
                                         ...listingItem, 
                                         title:bookData.title,
                                         author:bookData.author
                                     }
-                                    dataUsed.push(listingItem)
+    
+                                    dataNew.push(listingItem)
                                 }
-
+    
+                            }
                         }
+
+
+                        if (listingsData.used)
+                        {
+                            for(const listing of listingsData.used){
+                                let listingItem = {
+                                    id:listing.id,
+                                    seller:listing.seller,
+                                    type:listing.type,
+                                    price:listing.price,
+                                    sold:listing.sold
+                                    
+                                }
+    
+                                    if(listing.bookId === bookData.id){
+                                        listingItem = {
+                                            ...listingItem, 
+                                            title:bookData.title,
+                                            author:bookData.author
+                                        }
+                                        dataUsed.push(listingItem)
+                                    }
+    
+                            }
+                        }
+
 
                         console.log("asndjsabdad", dataNew)
 

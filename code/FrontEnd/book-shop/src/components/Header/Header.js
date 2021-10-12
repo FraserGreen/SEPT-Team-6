@@ -50,7 +50,7 @@ export const Header = () => {
                         userType.admin
                         ?
                         (
-                            <div className = 'padding'>
+                            <div className = 'padding' style={{float:'right', flexDirection:'row-reverse'}}>
                                 <NavLink to = "/management">
                                     <Button variant="secondary">Management</Button>{' '}    
                                 </NavLink>
