@@ -2,6 +2,7 @@ package com.rmit.sept.bk_cartservices.services;
 
 
 import com.rmit.sept.bk_cartservices.Repositories.*;
+import com.rmit.sept.bk_cartservices.exceptions.ItemAlreadyInCartException;
 import com.rmit.sept.bk_cartservices.exceptions.ListingNotFoundException;
 import com.rmit.sept.bk_cartservices.exceptions.ListingSoldException;
 import com.rmit.sept.bk_cartservices.model.*;
@@ -31,6 +32,9 @@ public class CartService {
         }
         if (listing.getSold()) {
             throw new ListingSoldException("Listing with id " + cartItem.getListingId() + " is already sold");
+        }
+        if (cartItemRepository.getByUserIdAndListingId(cartItem.getUserId(), cartItem.getListingId()) != null) {
+            throw new ItemAlreadyInCartException("Listing with id " + cartItem.getListingId() + " is already in cart");
         }
         return cartItemRepository.save(cartItem);
     }
