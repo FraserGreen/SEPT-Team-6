@@ -3,6 +3,7 @@ package com.rmit.sept.bk_cartservices.services;
 
 import com.rmit.sept.bk_cartservices.Repositories.*;
 import com.rmit.sept.bk_cartservices.exceptions.ListingNotFoundException;
+import com.rmit.sept.bk_cartservices.exceptions.ListingSoldException;
 import com.rmit.sept.bk_cartservices.model.*;
 import com.rmit.sept.bk_cartservices.payload.UserCartResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,12 @@ public class CartService {
 
 
     public CartItem saveCartItem(CartItem cartItem) {
-        if (listingRepository.getById(cartItem.getListingId()) == null) {
+        Listing listing = listingRepository.getById(cartItem.getListingId());
+        if (listing == null) {
             throw new ListingNotFoundException("Listing with id " + cartItem.getListingId() + " not found");
+        }
+        if (listing.getSold()) {
+            throw new ListingSoldException("Listing with id " + cartItem.getListingId() + " is already sold");
         }
         return cartItemRepository.save(cartItem);
     }
@@ -77,19 +82,17 @@ public class CartService {
     }
 
     public boolean checkout(Long userId, String username) {
-        List<CartItem> cartItems = cartItemRepository.findByUserId(userId);
-        List<Long> listingIds = new ArrayList<Long>();
-        for (CartItem cartItem : cartItems) {
-            listingIds.add(cartItem.getListingId());
-        }
-        List<Listing> listings = listingRepository.findByIdIn(listingIds);
+        List<CartItemDetails> userCart = getCart(userId).getItemsList();
 
-        // if any listings are sold, abort
-        for (Listing listing : listings) {
-            if (listing.getSold()) {
+        List<Long> listingIds = new ArrayList<Long>();
+        for (CartItemDetails cartItemDetails : userCart) {
+            // if listing not found, book not found, or listing sold, abort checkout
+            if (!cartItemDetails.getStatus().equals(CartItemDetails.STATUS_OK)) {
                 return false;
             }
+            listingIds.add(cartItemDetails.getListingId());
         }
+        List<Listing> listings = listingRepository.findByIdIn(listingIds);
 
         // create transactions and update listings as sold
         for (Listing listing : listings) {
@@ -106,7 +109,7 @@ public class CartService {
         }
 
         // empty cart
-        cartItemRepository.deleteAll(cartItems);
+        clearCart(userId);
 
         return true;
     }
