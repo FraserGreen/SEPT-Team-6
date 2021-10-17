@@ -35,7 +35,7 @@ public class TransactionService {
         Transaction transaction = transactionRepository.getById(id);
         if (transaction == null) throw new TransactionNotFoundException("Transaction with id " + id + " not found");
 
-        updateCancellableIfTwoHoursElapsed(transaction);
+        updateCancellableIfDurationHasElapsed(transaction, new Date().getTime());
         return transaction;
     }
 
@@ -44,12 +44,12 @@ public class TransactionService {
 
         List<Transaction> asSeller = transactionRepository.findBySeller(username);
         if (!asSeller.isEmpty()) {
-            updateCancellableIfTwoHoursElapsed(asSeller);
+            updateCancellableIfDurationHasElapsed(asSeller);
             transactions.put("asSeller", asSeller);
         }
         List<Transaction> asBuyer = transactionRepository.findByBuyer(username);
         if (!asBuyer.isEmpty()) {
-            updateCancellableIfTwoHoursElapsed(asBuyer);
+            updateCancellableIfDurationHasElapsed(asBuyer);
             transactions.put("asBuyer", asBuyer);
         }
 
@@ -77,25 +77,17 @@ public class TransactionService {
         return true;
     }
 
-    private void updateCancellableIfTwoHoursElapsed(List<Transaction> transactions) {
-        long now = new Date().getTime();
-        long twoHourDuration = TimeUnit.HOURS.toMillis(2);
+    private void updateCancellableIfDurationHasElapsed(List<Transaction> transactions) {
+        long nowInMillis = new Date().getTime();
 
         for (Transaction transaction : transactions) {
-            if (transaction.getStatus().equals(Transaction.STATUS_CANCELLABLE)) {
-                if ((transaction.getDate().getTime() + CANCELLABLE_DURATION_IN_MILLIS) < now) {
-                    transaction.setStatus(Transaction.STATUS_CONFIRMED);
-                    transactionRepository.save(transaction);
-                }
-            }
+            updateCancellableIfDurationHasElapsed(transaction, nowInMillis);
         }
     }
 
-    private void updateCancellableIfTwoHoursElapsed(Transaction transaction) {
-        long now = new Date().getTime();
-
+    private void updateCancellableIfDurationHasElapsed(Transaction transaction, long nowInMillis) {
         if (transaction.getStatus().equals(Transaction.STATUS_CANCELLABLE)) {
-            if ((transaction.getDate().getTime() + CANCELLABLE_DURATION_IN_MILLIS) < now) {
+            if ((transaction.getDate().getTime() + CANCELLABLE_DURATION_IN_MILLIS) < nowInMillis) {
                 transaction.setStatus(Transaction.STATUS_CONFIRMED);
                 transactionRepository.save(transaction);
             }
