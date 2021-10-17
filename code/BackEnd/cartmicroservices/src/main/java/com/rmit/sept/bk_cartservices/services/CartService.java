@@ -47,12 +47,11 @@ public class CartService {
         for (CartItem cartItem : cartItems) {
             CartItemDetails cartItemDetails = new CartItemDetails();
 
+            cartItemDetails.setListingId(cartItem.getListingId());
             Listing listing = listingRepository.getById(cartItem.getListingId());
             if (listing == null) {
                 cartItemDetails.setStatus(CartItemDetails.STATUS_LISTING_NOT_FOUND);
             } else {
-                cartItemDetails.setListingId(cartItem.getListingId());
-
                 Book book = bookRepository.getById(listing.getBookId());
                 if (book == null) {
                     cartItemDetails.setStatus(CartItemDetails.STATUS_BOOK_NOT_FOUND);
