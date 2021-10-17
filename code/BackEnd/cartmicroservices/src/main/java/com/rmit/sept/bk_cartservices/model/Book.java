@@ -26,8 +26,6 @@ public class Book {
     private String imgURL;
     @NotBlank(message = "Description is required")
     private String description;
-//    @NotBlank(message = "Price is required")
-    private String price;
     private Date create_At;
     private Date update_At;
 
@@ -68,9 +66,6 @@ public class Book {
 
     public void setDescription(String description) {this.description = description;}
 
-    public String getPrice() {return price;}
-
-    public void setPrice(String price) {this.price = price;}
 //    public String getTableOfContents() { return tableOfContents; }
 //
 //    public void setTableOfContents(String tableOfContents) { this.tableOfContents = tableOfContents; }

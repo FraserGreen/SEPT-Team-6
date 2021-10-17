@@ -94,6 +94,8 @@ public class CartService {
         // create transactions and update listings as sold
         for (Listing listing : listings) {
             listing.setSold(true);
+            listingRepository.save(listing);
+
             Transaction transaction = new Transaction();
             transaction.setListingId(listing.getId());
             transaction.setBuyer(username);
