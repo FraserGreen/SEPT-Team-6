@@ -86,6 +86,10 @@ public class CartService {
 
     public boolean checkout(Long userId, String username) {
         List<CartItemDetails> userCart = getCart(userId).getItemsList();
+        // if cart empty, abort checkout
+        if (userCart.isEmpty()) {
+            return false;
+        }
 
         List<Long> listingIds = new ArrayList<Long>();
         for (CartItemDetails cartItemDetails : userCart) {
