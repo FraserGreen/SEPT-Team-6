@@ -65,11 +65,13 @@ public class TransactionService {
             return false;
         }
         transaction.setStatus(Transaction.STATUS_CANCELLED);
+        transactionRepository.save(transaction);
 
         // allow listing to be shown again (no longer 'sold')
         Listing listing = listingRepository.getById(transaction.getListingId());
         if (listing != null) {
             listing.setSold(false);
+            listingRepository.save(listing);
         }
 
         return true;
