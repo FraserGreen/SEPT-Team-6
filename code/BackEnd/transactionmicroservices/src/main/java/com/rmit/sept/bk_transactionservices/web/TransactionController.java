@@ -63,7 +63,7 @@ public class TransactionController {
         if (cancelSuccess) {
             return ResponseEntity.ok(new CancelResponse("Success (transaction cancelled)"));
         } else {
-            return new ResponseEntity<CancelResponse>(new CancelResponse("Failed (more than two hours have passed since transaction completed)"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<CancelResponse>(new CancelResponse("Failed (transaction status is not 'cancellable')"), HttpStatus.BAD_REQUEST);
         }
     }
 

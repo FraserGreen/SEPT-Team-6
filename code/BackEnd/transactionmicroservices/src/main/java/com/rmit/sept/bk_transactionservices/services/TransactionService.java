@@ -21,6 +21,10 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class TransactionService {
 
+    private static final long CANCELLABLE_DURATION_IN_HOURS = 2;
+    private static final long CANCELLABLE_DURATION_IN_MILLIS = TimeUnit.HOURS.toMillis(CANCELLABLE_DURATION_IN_HOURS);
+
+
     @Autowired
     private TransactionRepository transactionRepository;
     @Autowired
@@ -77,8 +81,9 @@ public class TransactionService {
 
         for (Transaction transaction : transactions) {
             if (transaction.getStatus().equals(Transaction.STATUS_CANCELLABLE)) {
-                if ((transaction.getDate().getTime() + twoHourDuration) < now) {
+                if ((transaction.getDate().getTime() + CANCELLABLE_DURATION_IN_MILLIS) < now) {
                     transaction.setStatus(Transaction.STATUS_CONFIRMED);
+                    transactionRepository.save(transaction);
                 }
             }
         }
@@ -86,11 +91,11 @@ public class TransactionService {
 
     private void updateCancellableIfTwoHoursElapsed(Transaction transaction) {
         long now = new Date().getTime();
-        long twoHourDuration = TimeUnit.HOURS.toMillis(2);
 
         if (transaction.getStatus().equals(Transaction.STATUS_CANCELLABLE)) {
-            if ((transaction.getDate().getTime() + twoHourDuration) < now) {
+            if ((transaction.getDate().getTime() + CANCELLABLE_DURATION_IN_MILLIS) < now) {
                 transaction.setStatus(Transaction.STATUS_CONFIRMED);
+                transactionRepository.save(transaction);
             }
         }
     }
