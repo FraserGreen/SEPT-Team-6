@@ -33,6 +33,7 @@ export const Header = () => {
             loggedIn
             ?
             (<div className='header-style'>
+                <div className='header-buttons'>
                 <Container>
                     <div className='main-wrapper'>
                         <div style={{float:'left'}}>
@@ -62,29 +63,33 @@ export const Header = () => {
               
                     </div>
                 </Container>
+                </div>
             </div>)
             :
             (
                 <div className='header-style'>
-                <Container>
-                    <div className = 'main-wrapper'>
-                        <div  style={{float:'left'}}>
-                            <NavLink to = "/about-us">
-                                <Button variant="secondary">About Us</Button>{' '}    
-                            </NavLink>
-                        </div>
-                        <div className = 'padding' style={{float:'right', flexDirection:'row-reverse'}}>
-                            <NavLink to = "/login">
-                                <Button variant="secondary">Sign in</Button>{' '}    
-                            </NavLink>
-                        </div>
-                        <div className = 'padding' style={{float:'right', flexDirection:'row-reverse'}}>
-                            <NavLink to = "/register">
-                                <Button variant="secondary">Register</Button>{' '}
-                            </NavLink>
-                        </div>
+                    <div className='header-buttons'>
+
+                        <Container>
+                            <div className = 'main-wrapper'>
+                                <div  style={{float:'left'}}>
+                                    <NavLink to = "/about-us">
+                                        <Button variant="secondary">About Us</Button>{' '}    
+                                    </NavLink>
+                                </div>
+                                <div className = 'padding' style={{float:'right', flexDirection:'row-reverse'}}>
+                                    <NavLink to = "/login">
+                                        <Button variant="secondary">Sign in</Button>{' '}    
+                                    </NavLink>
+                                </div>
+                                <div className = 'padding' style={{float:'right', flexDirection:'row-reverse'}}>
+                                    <NavLink to = "/register">
+                                        <Button variant="secondary">Register</Button>{' '}
+                                    </NavLink>
+                                </div>
+                            </div>
+                        </Container>
                     </div>
-                </Container>
                 </div>
                 
             )

@@ -19,6 +19,8 @@ import { Genre } from '../Genre/Genre';
 import { Search } from '../Search/Search';
 import { MyListings } from '../My-Listings/MyListings';
 import { CreateListing } from '../CreateListing/CreateListing';
+import { Cart } from '../Cart/Cart';
+import { Footer } from '../Footer/Footer';
 
 
 
@@ -46,9 +48,11 @@ function App()
             <Route path="/management" component={()=> <Management/>}/>
             <Route path="/create-listing" component={()=> <CreateListing/>}/>
             <Route path="/my-listings" component={()=> <MyListings/>}/>
+            <Route path="/cart" component={()=> <Cart/>}/>
             <Route path="/" component={()=> <Homepage/> }/>
           </Switch>
         </Router>
+        <Footer/>
       </SessionUserProvider>
 
       

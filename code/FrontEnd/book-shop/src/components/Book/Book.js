@@ -307,10 +307,11 @@ export const Book = () => {
                         </div>
                     </Row>
 
-                    <div>
-                    <Row>
-                       <BookListing bookID={bookID}></BookListing>
-                        </Row>
+                    <div className='tableList'>
+                        <ColouredLine color='black'/>
+                            <Row>
+                                <BookListing bookID={bookID}></BookListing>
+                            </Row>
                     </div>
                 </Container>
                 </div>

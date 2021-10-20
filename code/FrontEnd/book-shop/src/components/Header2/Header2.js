@@ -1,11 +1,11 @@
 import React from 'react'
-import {Button, Container, Row, Col} from 'react-bootstrap'
+import {Button, Container, Row, Col, Image} from 'react-bootstrap'
 import { FormControl } from 'react-bootstrap'
 import { Form } from 'react-bootstrap'
 import { useHistory} from 'react-router'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import "../Header2/Header2.css"
+import "./Header2.css"
 
 export const Header2 = () => {
     const history = useHistory();
@@ -20,7 +20,7 @@ export const Header2 = () => {
         <div className='header2'>
             <Container>
                 <Row>
-                    <Col>
+                    <Col md={4}>
                         <NavLink to = '/' style={{textDecoration:"none"}}>                        
                         <h1 className='logo'>
                             BOOKEROO
@@ -28,9 +28,11 @@ export const Header2 = () => {
                         </NavLink>
                     </Col>
 
-                    <Col md={6}>
+
+                    <Col md={{span:6, offset:2}}>
+
                         <br/>
-                        <span>
+
 
                             <Form className="d-flex">
                             <FormControl
@@ -48,9 +50,18 @@ export const Header2 = () => {
                                 }}
                             />
                             <Button onClick={changeURL} variant="outline-success">Search</Button>
+
+                            <div className='cart'>
+                                <NavLink to='/cart'>
+                                    <Button style={{background:'white', borderColor:'white', maxHeight:'50px', alignSelf:'center'}}> 
+                                        <img style={{maxHeight:'50px'}}src='https://i.pinimg.com/originals/15/4f/df/154fdf2f2759676a96e9aed653082276.png'/>
+                                    </Button>
+                                </NavLink>
+                            </div>
                             </Form>
-                        </span> 
-                    </Col>
+
+                        
+                    </Col>      
               
                 </Row>
                
