@@ -17,16 +17,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 import static com.rmit.sept.bk_loginservices.security.SecurityConstant.TOKEN_PREFIX;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
 @RestController
@@ -87,8 +82,6 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
-
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
@@ -106,5 +99,8 @@ public class UserController {
 
         return ResponseEntity.ok(new JWTLoginSucessReponse(true, jwt));
     }
+
+    @GetMapping("/getallusers")
+    public ResponseEntity<?> getAllUsers() {return userService.getAllUsers();};
 
 }

@@ -1,5 +1,6 @@
 .main-wrapper-home-page {
     padding-top: 20px;
+    min-height: 500px;
 }
 
 .bookPrice
@@ -22,20 +23,46 @@
 }
 .cards
 {
-    padding-top: 5%;
+    padding-top: 10%;
 }
 
 .sideBar
 {
-
-    padding-top: 3%;
     padding-right: 15%;
     max-width: 300px;
     min-width: 300px;
-    min-height: page;
+
 }
 
 .container
 {
     max-width: '50%';
+}
+
+.homeImage
+{
+    max-width: 100%;
+}
+
+
+.booksDisplay
+{
+    margin-top: 3%;
+}
+
+.tableList
+{
+    font-size: 20px;
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+.tableListItem
+{
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
 }

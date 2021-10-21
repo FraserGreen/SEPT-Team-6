@@ -106,7 +106,7 @@ export const Genre = () => {
         })
     
         return (
-            <div>
+            <div className='main-wrapper-home-page'> 
                 <Container>
                     <div>
                     <Row>
@@ -122,7 +122,7 @@ export const Genre = () => {
     else
     {
         return (
-            <div>
+            <div className='main-wrapper-home-page'>
                 <Container>
                     <h1>
                         No books for this category.

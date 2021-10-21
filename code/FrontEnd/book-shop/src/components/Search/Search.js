@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { Card, Row, Col, Container} from 'react-bootstrap'
 import { useHistory } from 'react-router';
+import '../Homepage/Homepage.css'
 
 export const Search = () => {
 
@@ -126,7 +127,7 @@ export const Search = () => {
         )
 
         return (
-            <div>
+            <div className='main-wrapper-home-page'>
                 <Container>
                     <Row>
                         <h1>

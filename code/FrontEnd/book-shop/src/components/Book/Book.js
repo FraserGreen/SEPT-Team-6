@@ -15,11 +15,22 @@ export const Book = () => {
     // For error prompt
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+
     const handleCloseOk = () => {
         setShow(false)
-        goToURL('/login');
+        if (!loggedIn)
+        {
+            goToURL('/login');
+        }
     }
+
     const handleShow = () => setShow(true);
+
+    const [messagePrompt, setMessagePrompt] = useState({
+        title:"",
+        message:"",
+        ok:""
+    });
 
     const history = useHistory();
 
@@ -33,15 +44,23 @@ export const Book = () => {
         />
     );
 
+    // Keeps track of current user
     const {loggedIn} = useSessionUser();
+    const {sessionUser} = useSessionUser();
+
     const [book, setBook] = useState({id: 0});
     const [dataLoaded, setLoadedData] = useState(false);
-    const [listings, setListings] = useState()
+    const [listings, setListings] = useState();
+
+    // States for buy button
     const [findLowest, setFindLowest] = useState(false);
     const [displayPrice, setDisplayPrice] = useState("");
+    const [lowestBook, setLowestBook] = useState();
+
 
     let {bookID} = useParams();
 
+    // Fetches data from API
     const populateData = async (request) =>
     {
         try
@@ -62,7 +81,7 @@ export const Book = () => {
                     id:parseInt(bookID)
                 }
     
-                console.log("Sending book request")
+
                 const response = await axios.post("http://localhost:8081/api/books/getbook", bookRequest, config);
     
                 return response.data;
@@ -74,9 +93,9 @@ export const Book = () => {
                     bookId:parseInt(bookID)
                 }
                     
-                console.log("Sending listings request")
+
                 const response = await axios.post("http://localhost:8082/api/listings/getlistingsbybookid", listingRequest, config);
-                console.log("Got listings", response.data)
+
                 return response.data;
             }
 
@@ -86,8 +105,21 @@ export const Book = () => {
         }
     }
 
+    // useEffect for logged in user
     useEffect(() => {
-        console.log("findlowest", findLowest)
+        if (!loggedIn)
+        {
+            setMessagePrompt({
+                title:"Not Logged in!",
+                message:"Please login to purchase or create a listing for a book.",
+                ok:"Log in"
+            })
+        }
+    }, sessionUser)
+
+
+    // useEffect for finding the listing with the lowest book price
+    useEffect(() => {
         if (findLowest === false)
         {
             setLowestPrice();
@@ -96,6 +128,7 @@ export const Book = () => {
        
     }, [book, findLowest])
 
+    // useEffect for handling changes in data fetched
     useEffect(() => {
         async function fetchData(){
             if (dataLoaded === false) {
@@ -108,11 +141,7 @@ export const Book = () => {
                 if (!listingsData.results)
                 {
                     setListings(listingsData);
-                    // setLowestPrice();
-                    // setListingsExist(true);
-                    console.log("What the dog doin?")
                     setFindLowest(false);
-
                 }
             }
         }
@@ -130,23 +159,27 @@ export const Book = () => {
     function getLowestPrice(type) {
         if (type === "new")
         {
+            setLowestBook(listings.new[0]);
             var lowestPrice = listings.new[0].price;
-            for (const listingPrice of listings.new)
+            for (const bookListing of listings.new)
             {
-                if (listingPrice.price < lowestPrice)
+                if (bookListing.price < lowestPrice)
                 {
-                    lowestPrice = listingPrice.price;
+                    lowestPrice = bookListing.price;
+                    setLowestBook(bookListing);
                 }
             }
         }
         else if (type === "used")
         {
+            setLowestBook(listings.used[0]);
             var lowestPrice = listings.used[0].price;
-            for (const listingPrice of listings.used)
+            for (const bookListing of listings.used)
             {
-                if (listingPrice.price < lowestPrice)
+                if (bookListing.price < lowestPrice)
                 {
-                    lowestPrice = listingPrice.price;
+                    lowestPrice = bookListing.price;
+                    setLowestBook(bookListing);
                 }
             }  
         }
@@ -158,7 +191,6 @@ export const Book = () => {
     {
         if (listings)
         {
-
             var temp = 0;
 
             if (listings.new && listings.used)
@@ -178,7 +210,6 @@ export const Book = () => {
             
             if (listings.new && !listings.used)
             {
-                console.log("HI")
                 temp = getLowestPrice("new");
                 setDisplayPrice(String(temp));
             }
@@ -190,24 +221,67 @@ export const Book = () => {
         }
         
     }
+
+    const buyButton = async () => 
+    {
+        try
+        {
+            const config = 
+            {
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*',
+              },
+              withCredential: true
+            }
+            
+            const data = {
+                listingId:lowestBook.id,
+                userId:sessionUser.id
+            }
+
+            const response = await axios.post('http://localhost:8084/api/carts/additem', data, config);
+
+            if (response.status === 201)
+            {
+                setMessagePrompt({
+                    title:"Success",
+                    message:"Item added to cart.",
+                    ok:"OK"
+                })
+                handleShow();
+
+            }
+        }
+        catch
+        {
+            setMessagePrompt({
+                title:"Oops!",
+                message:"Item already in cart.",
+                ok:"OK"
+            })
+            handleShow();
+        }
+    }
     
     if (book)
     {
 
         return (
-            <div>
+            <div className='main-wrapper-book-page'>
                 <>
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                    <Modal.Title>Not logged in!</Modal.Title>
+                    <Modal.Title>{messagePrompt.title}</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Please login to purchase or create a listing for a book.</Modal.Body>
+                    <Modal.Body>{messagePrompt.message}</Modal.Body>
                     <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
                     <Button variant="primary" onClick={handleCloseOk}>
-                        Login
+                        {messagePrompt.ok}
                     </Button>
                     </Modal.Footer>
                 </Modal>
@@ -261,9 +335,15 @@ export const Book = () => {
                                                     </div>
                                                         <Col class='col text-center'>
                                                             <Button onClick = {()=> {
+                                                                console.log("show", show)
+                                                                console.log("logged in", loggedIn)
                                                                 if (!loggedIn)
                                                                 {
                                                                     handleShow()
+                                                                }
+                                                                else
+                                                                {
+                                                                    buyButton();
                                                                 }
                                                             }}style={{fontSize:'30px', backgroundColor:'cadetblue', borderColor:'cadetblue', minWidth:'90%'}}variant="primary">
                                                                 BUY NOW

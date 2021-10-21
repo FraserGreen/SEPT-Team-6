@@ -43,6 +43,8 @@ export const SessionUserProvider = ({children}) => {
             });     
         }
     }
+
+    // Stores login data in local storage
     const getLocalStorageSessionUser = () => {
         const user = localStorage.getItem(SESSION_USER)
         if (user)

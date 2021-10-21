@@ -9,6 +9,7 @@ import com.rmit.sept.bk_bookservices.payload.ImgUploadUrlResponse;
 import com.rmit.sept.bk_bookservices.payload.SearchRequest;
 import com.rmit.sept.bk_bookservices.services.MapValidationErrorService;
 import com.rmit.sept.bk_bookservices.services.BookService;
+import com.rmit.sept.bk_bookservices.web.LoadBooks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,34 +53,8 @@ public class BookController {
             return new ResponseEntity<String>("Already populated with data", HttpStatus.CREATED);
         }
 
-
-        Book book1 = new Book();
-        book1.setIsbn("1234567890");
-        book1.setTitle("The Very Hungry Caterpillar");
-        book1.setAuthor("Eric Carle");
-        book1.setGenre("kids-teens");
-        book1.setImgURL("https://images-na.ssl-images-amazon.com/images/I/51aQj3i-EmL._SY351_BO1,204,203,200_.jpg");
-        book1.setDescription("The Very Hungry Caterpillar is a children's picture book designed, illustrated, and written by Eric Carle, first published by the World Publishing Company in 1969, later published by Penguin Putnam.");
-
-        Book book2 = new Book();
-        book2.setIsbn("1234567891");
-        book2.setTitle("Harry Potter and the Philosopher's Stone");
-        book2.setAuthor("J.K Rowling");
-        book2.setGenre("fiction");
-        book2.setImgURL("https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/4088/9781408855652.jpg");
-        book2.setDescription("Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.");
-
-        Book book3 = new Book();
-        book3.setIsbn("1234567892");
-        book3.setTitle("Hunter X Hunter Vol. 1");
-        book3.setAuthor("Yoshihiro Togashi");
-        book3.setGenre("fiction");
-        book3.setImgURL("https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781591167532/hunter-x-hunter-vol-1-9781591167532_hr.jpg");
-        book3.setDescription("The story focuses on a young boy named Gon Freecss who discovers that his father, who left him at a young age, is actually a world-renowned Hunter, a licensed professional who specializes in fantastical pursuits.");
-
-        bookService.saveBook(book1);
-        bookService.saveBook(book2);
-        bookService.saveBook(book3);
+        LoadBooks loadBooks = new LoadBooks(bookService);
+        loadBooks.populate();
 
         return new ResponseEntity<String>("Populated", HttpStatus.CREATED);
     }

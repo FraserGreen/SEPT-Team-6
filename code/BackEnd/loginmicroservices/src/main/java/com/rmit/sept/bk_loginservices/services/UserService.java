@@ -1,14 +1,13 @@
 package com.rmit.sept.bk_loginservices.services;
 
-
-
-
 import com.rmit.sept.bk_loginservices.Repositories.UserRepository;
 import com.rmit.sept.bk_loginservices.exceptions.UsernameAlreadyExistsException;
 import com.rmit.sept.bk_loginservices.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -19,6 +18,11 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    public ResponseEntity<?> getAllUsers ()
+    {
+        List<User> users = userRepository.findAll();
+        return ResponseEntity.ok(users);
+    }
     public User saveUser (User newUser){
 
       /*  newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));

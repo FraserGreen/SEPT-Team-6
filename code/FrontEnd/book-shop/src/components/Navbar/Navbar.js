@@ -22,9 +22,9 @@ export const NavigationBar = () => {
                     </Col>
 
                     <Col>
-                        <NavLink to="/genre/non-fiction" style={{textDecoration:"none"}}>
+                        <NavLink to="/genre/self-help" style={{textDecoration:"none"}}>
                             <div className = 'navItems'> 
-                                Non Fiction
+                                Self Help
                             </div></NavLink>
                     </Col>
 

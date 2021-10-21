@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState, useEffect} from 'react'
-import { Col, Container, Row, Table, Button} from 'react-bootstrap'
+import { Col, Container, Row, Table, Button, Modal} from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import './MyListings.css'
 import { useSessionUser } from '../../Hooks/useSessionUser'
+import { useHistory } from 'react-router'
 
 export const MyListings = () => {
     const {sessionUser} = useSessionUser();
@@ -12,6 +13,19 @@ export const MyListings = () => {
     const[listingsData, setListingsData] = useState(null);
     const[bookData, setBookData] = useState(null);
     const[completeData, setCompleteData] = useState([]);
+
+    const history = useHistory();
+    const [show, setShow] = useState(true);
+    const handleClose = () => {
+        setShow(false);
+        history.push("/login")
+
+    }
+    const handleCloseOk = () => {
+        setShow(false)
+        history.push("/login")
+    }
+
 
     const getListingsContents = async () =>
     {
@@ -124,129 +138,165 @@ export const MyListings = () => {
 
     },  [listingsData, bookData, completeData, dataLoaded])
 
-    if(completeData)
+    if (sessionUser.username === "")
     {
-        console.log("listings data", listingsData)
-        console.log("book data", bookData)
-        const allData = completeData.map(listItem => {
-            return (
-                
-                <tr>
-                <td>{listItem.id}</td>
-                <td>{listItem.bookId}</td>
-                <td>{listItem.title}</td>
-                <td>{listItem.author}</td>
-                <td>{listItem.type}</td>
-                <td>{listItem.price}</td>
-                {
-                    listItem.sold
-                    ?
-                    (<div>
-                        Sold
-                    </div>)
-                    :
-                    (<div>
-                        Not sold
-                    </div>
-                    )
-                }
-                </tr>
-            )
-        })
-
-        return(
-            <div>
-            <Container>
-                <Row>
-                    <h1>
-                        My Listings
-                    </h1>
-                </Row>
-                <Row>
-                    <Col>
-                        <div className='addListing'>
-                            <NavLink to = "/create-listing">
-                            <Button variant ='success' style={{width:'100px'}}>
-                                Add
-                            </Button>
-                            </NavLink>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-
-            <Container>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                        <th>Listing ID </th>
-                        <th>Book ID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Type</th>
-                        <th>Price</th>
-                        <th>Status</th>
-
-             
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {allData}
-                    </tbody>
-
-                </Table>
-                
-            </Container>
-        
+        return (
+            <div className='main-wrapper-management-page-dashboard'>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Not Logged in!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Please login to access your profile.</Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleCloseOk}>
+                        Log in
+                    </Button>
+                    </Modal.Footer>
+                </Modal>
 
             </div>
         )
     }
-    else{
-        return (
-            <div>
+    else
+    {
+        if(completeData)
+        {
+            console.log("listings data", listingsData)
+            console.log("book data", bookData)
+            const allData = completeData.map(listItem => {
+                return (
+                    
+                    <tr>
+                    <td>{listItem.id}</td>
+                    <td>{listItem.bookId}</td>
+                    <td>{listItem.title}</td>
+                    <td>{listItem.author}</td>
+                    <td>{listItem.type}</td>
+                    <td>{listItem.price}</td>
+                    {
+                        listItem.sold
+                        ?
+                        (<div>
+                            Sold
+                        </div>)
+                        :
+                        (<div>
+                            Not sold
+                        </div>
+                        )
+                    }
+                    </tr>
+                )
+            })
+    
+            return(
+                <div className='main-wrapper-listings-page'>
                 <Container>
-                    <h1>
-                        My Listings
-                    </h1>
-                </Container>
-                <Container>
-
+                    <Row>
+                        <div style={{'marginBottom':'3%'}}>
+                        <h1>
+                            My Listings
+                        </h1>
+                        </div>
+                    </Row>
+    
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                            <th>Listing ID </th>
+                            <th>Book ID</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Status</th>
+    
+                 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {allData}
+                        </tbody>
+    
+                    </Table>
+                    
                     <Row>
                         <Col>
+                            <div style={{'marginTop':'3%'}}>
                             <div className='addListing'>
                                 <NavLink to = "/create-listing">
-                                    <Button variant ='success' style={{width:'100px'}}>
-                                        Add
+                                <Button variant ='success' style={{width:'100px'}}>
+                                    Add
+                                </Button>
+                                </NavLink>
+                            </div>
+    
+                            <div >
+                                <NavLink to = "/profile">
+                                    <Button variant ='danger' style={{width:'100px', float:'left'}}>
+                                        Back
                                     </Button>
                                 </NavLink>
+                            </div>
                             </div>
                         </Col>
                     </Row>
                 </Container>
-                <Container>
-                    <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                        <th>Listing ID </th>
-                        <th>Book ID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Type</th>
-                        <th>Price</th>
-                        <th>Status</th>
-
-             
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-
-                </Table>
-                </Container>
-            </div>
+            
     
-        )
+                </div>
+            )
+        }
+        else{
+            return (
+                <div className='main-wrapper-listings-page'>
+                    <Container>
+                        <h1>
+                            My Listings
+                        </h1>
+                    </Container>
+                    <Container>
+    
+                        <Row>
+                            <Col>
+                                <div className='addListing'>
+                                    <NavLink to = "/create-listing">
+                                        <Button variant ='success' style={{width:'100px'}}>
+                                            Add
+                                        </Button>
+                                    </NavLink>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <Container>
+                        <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                            <th>Listing ID </th>
+                            <th>Book ID</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Status</th>
+    
+                 
+                            </tr>
+                        </thead>
+                        <tbody>
+    
+                        </tbody>
+    
+                    </Table>
+                    </Container>
+                </div>
+        
+            )
+        }
     }
+   
 }

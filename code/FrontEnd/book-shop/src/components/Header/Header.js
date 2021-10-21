@@ -20,10 +20,8 @@ export const Header = () => {
 
     }
 
-    const myBooks = (event) => {
-        event.preventDefault();
-
-        history.push("/my-listings");
+    const goToURL = (url) => {
+        history.push(url);
 
     }
 
@@ -44,8 +42,9 @@ export const Header = () => {
                         <div className='padding' style={{float:'right', flexDirection:'row-reverse'}}>
                                 <Button variant="secondary" onClick={logout} >Logout</Button>{' '}    
                         </div>
+                        
                         <div className='padding' style={{float:'right', flexDirection:'row-reverse'}}>
-                                <Button variant="secondary" onClick={myBooks} >My Listings</Button>{' '}    
+                                <Button variant="secondary" onClick={()=> goToURL("/profile")} >My Profile</Button>{' '}    
                         </div>
                         {
                         userType.admin

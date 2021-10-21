@@ -6,14 +6,11 @@ import { HomepageList } from './HomepageList'
 import { NavLink, useHistory} from 'react-router-dom'
 
 import './Homepage.css'
-import { useSessionUser } from '../../Hooks/useSessionUser'
-
 
 const axios = require("axios")
 export const Homepage = () => {
 
     const history = useHistory();
-    const {logoutSessionUser} = useSessionUser();
     const[dataLoaded, setDataLoaded] = useState(false)
     const [books, setBooks] = useState()
 
@@ -46,7 +43,7 @@ export const Homepage = () => {
         async function fetchData(){
             if(dataLoaded === false){
                 const booksData = await populateData()
-                console.log("BOO", booksData)
+                console.log("Book Data: ", booksData)
                 setBooks(booksData)
                 setDataLoaded(true)
             }
@@ -106,7 +103,39 @@ export const Homepage = () => {
                                  <HomepageList/>
                             </div>
                         </Col>
+
+                        <Col>
+                            <img className='homeImage' src='https://www.autoimmuneinstitute.org/wp-content/uploads/2021/02/Resource-Page-Books-banner.png'/>
+
+                        </Col>
+             
+                        </Row>
+                        </Container>
+
+                        <div className='booksDisplay'>
+                     
+                            <Container>  
+                                <h1 style={{'marginBottom':'2%'}}>
+                                    New Releases
+                                </h1> 
+                                
+                                <Row>  
+                                    {bookDisplay}
+                                </Row>
+                            </Container>
+
+                        </div>
+
     
+
+                        {/* <Container>
+                        <Row className='justify-content-md-center'>
+                        <Col md='auto'>
+                            <div className='sideBar'>
+                                    <HomepageList/>
+                            </div>
+                        </Col>
+            
                         <Col>
                             <Container>    
                                 <Row>  
@@ -115,8 +144,7 @@ export const Homepage = () => {
                             </Container>
                         </Col>
                         </Row>
-                    </Container>
-    
+                    </Container> */}
     
                 </div>
             </div>   
@@ -127,7 +155,7 @@ export const Homepage = () => {
     else
     {
         return (
-            <div>
+            <div className='main-wrapper-home-page'>
                     
             </div>
         )
