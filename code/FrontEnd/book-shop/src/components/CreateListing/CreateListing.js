@@ -9,14 +9,17 @@ import "./CreateListing.css"
 
 export const CreateListing = () => {
 
+    // states for data
     const[dataLoaded, setDataLoaded] = useState(false)
     const [books, setBooks] = useState()
     const {sessionUser} = useSessionUser();
 
+    // states for input
     const [selectedBook, setSelectedBook] = useState(1);
     const [type, setSelectedType] = useState("");
     const [price, setPrice] = useState();
 
+    // states for alert message 
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState({
         success: false,
@@ -38,12 +41,12 @@ export const CreateListing = () => {
         }
     }
     
+    // fetches data from books to list in the drop down box
     useEffect(() => {
         console.log("Session user", sessionUser)
         async function fetchData(){
             if(dataLoaded === false){
                 const booksData = await populateData()
-                console.log("BOO", booksData)
                 setBooks(booksData)
                 setDataLoaded(true)
             }
@@ -52,10 +55,10 @@ export const CreateListing = () => {
        
     }, [dataLoaded])
     
+    // Sends request to make new listing.
+    // Also checks if inputs are correct.
     const submit = async () =>
     {
-        console.log("HI")
-
         if (type === "")
         {
             setShow(true);

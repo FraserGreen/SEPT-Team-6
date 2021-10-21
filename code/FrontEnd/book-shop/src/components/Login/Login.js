@@ -22,6 +22,8 @@ export const Login = () => {
         message: ""
     })
 
+    // Submits login form.
+    // Decodes token and stores in local storage
     const submit = async (event) => {
         event.preventDefault()
 

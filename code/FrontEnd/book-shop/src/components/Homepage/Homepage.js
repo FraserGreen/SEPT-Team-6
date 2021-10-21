@@ -14,6 +14,8 @@ export const Homepage = () => {
     const[dataLoaded, setDataLoaded] = useState(false)
     const [books, setBooks] = useState()
 
+
+    // Fetches books to display on home page and sends a request to create an admin account
     const populateData = async () => 
     {
         try 

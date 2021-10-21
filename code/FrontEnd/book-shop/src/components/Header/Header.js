@@ -12,6 +12,7 @@ export const Header = () => {
     const {userType} = useSessionUser();
     const history = useHistory();
 
+    // Log outs the user and reroutes to home page
     const logout = (event) => {
         event.preventDefault();
 

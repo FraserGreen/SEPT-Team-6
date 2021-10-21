@@ -94,6 +94,7 @@ export const Cart = () => {
         }
     }
 
+    // API call to checkout the cart
     const checkout = async (sessionUser, cartData) =>
     {
         console.log('checkout entered');
@@ -119,6 +120,8 @@ export const Cart = () => {
             console.log(error)
         }
     }
+
+    // Method to mark all items in cart as sold
     const markItemsAsSold = async (cartData) => 
     {
 

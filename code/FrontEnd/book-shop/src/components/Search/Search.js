@@ -52,6 +52,8 @@ export const Search = () => {
         }
     }
 
+    // Updates genre page by fetching books that belong to certain genres.
+    // Search type is updated for display purposes.
     useEffect(() => {
         console.log("useEffect")
         async function fetchData() {

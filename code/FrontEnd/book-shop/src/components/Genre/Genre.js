@@ -66,19 +66,6 @@ export const Genre = () => {
 
     if (books)
     {
-        // if (books === ("No results found for '" + genreParam + "'."))
-        // {
-        //     return (
-        //         <div>
-        //             <h1>
-        //                 No books found.
-        //             </h1>
-        //         </div>
-        //     )
-        // }
-        
-        // else
-        // {
         const booksDisplay = books.map(book => {
             return (
                 <Col md='auto'>

@@ -33,6 +33,7 @@ export const Register = () => {
             return;
         }
 
+        // Input checking for minimum password length
         if ((fields.password.length < passwordLength) || (fields.confirmPassword.length < passwordLength))
         {
             setShow(true);
@@ -46,6 +47,7 @@ export const Register = () => {
             return;
         }
 
+        // Input checking for correct format and length
         if (fields.phone.length !== phoneLength || String(fields.phone).charAt(0) !== '0')
         {
             setShow(true);

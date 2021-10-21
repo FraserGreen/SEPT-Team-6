@@ -16,6 +16,8 @@ export const SessionUserProvider = ({children}) => {
     );
 
     const [sessionUser, setSessionUser] = useState({username:""})
+
+    // Sets the user type.
     const checkType = (user) => {
         if (user.userType === "admin")
         {
@@ -44,7 +46,7 @@ export const SessionUserProvider = ({children}) => {
         }
     }
 
-    // Stores login data in local storage
+    // Stores login data in local storage.
     const getLocalStorageSessionUser = () => {
         const user = localStorage.getItem(SESSION_USER)
         if (user)
@@ -53,6 +55,8 @@ export const SessionUserProvider = ({children}) => {
         }
     }
 
+    // Used in combination with getLocalStorageSessionUser() to make sure
+    // login state is not lost when page is refreshed.
     useEffect(() => {
         const user = getLocalStorageSessionUser()
         if (user)
@@ -64,23 +68,22 @@ export const SessionUserProvider = ({children}) => {
     }, [sessionUser.username])
     
 
+    // Stores user in local storage and sets the user type.
     const loginSessionUser = (user) => {
-        localStorage.setItem(SESSION_USER, JSON.stringify(user));
-        // localStorage.setItem(USER_TYPE, user.userType);
-            
+        localStorage.setItem(SESSION_USER, JSON.stringify(user));            
         setSessionUser(user);
         setLoggedIn(true)
         checkType(user);
-
-
     }
 
+    // Removes user from local storage and logs out.
     const logoutSessionUser = () => {
         localStorage.setItem(SESSION_USER, "");
         setSessionUser({username:""})
         setLoggedIn(false)
     }
 
+    // Providers allows access to other components
     return <SessionUserContext.Provider value={{
         sessionUser,
         loggedIn,

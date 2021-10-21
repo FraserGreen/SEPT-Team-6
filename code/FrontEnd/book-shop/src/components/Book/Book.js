@@ -32,6 +32,7 @@ export const Book = () => {
         ok:""
     });
 
+    // useHistory for routing to different pages
     const history = useHistory();
 
     const ColouredLine = ({color}) => (
@@ -222,6 +223,7 @@ export const Book = () => {
         
     }
 
+    // Adds the listing with the lowest price to the cart
     const buyButton = async () => 
     {
         try
