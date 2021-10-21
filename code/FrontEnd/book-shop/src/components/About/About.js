@@ -26,10 +26,10 @@ export const About = () => {
                     Group Members:
                     <pre>
                         <ul>
-                            <li> Hugh Phung    | 3842508 | Front-End Developer </li>
-                            <li> Reylan Gill   | 3285137 | Back-End Developer, Docker, AWS</li> 
-                            <li> Fraser Green  | 3787186 | Circle Ci</li>
-                            <li> Sam Te        | 3199556 | Entity Relation Diagram Designer, Docker</li> 
+                            <li> Hugh Phung    | 3842508 | Front-End Developer, Documentation </li>
+                            <li> Reylan Gill   | 3285137 | Back-End Developer, Docker, AWS, Documentation</li> 
+                            <li> Fraser Green  | 3787186 | Circle Ci, Docker, Documentation</li>
+                            <li> Sam Te        | 3199556 | Entity Relation Diagram Designer, Docker, Documentation</li> 
                         </ul>
                     </pre>
                 </div>
