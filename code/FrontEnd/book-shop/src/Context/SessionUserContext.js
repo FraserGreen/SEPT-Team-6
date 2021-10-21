@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { SESSION_USER, USER_TYPE } from "../components/constants"
+import { SESSION_USER } from "../components/constants"
+import { useEffect } from "react"
 
 
 const SessionUserContext = React.createContext(null)
@@ -14,32 +15,8 @@ export const SessionUserProvider = ({children}) => {
         }
     );
 
-    // const initialUser = () => {
-    //     const user = localStorage.getItem(SESSION_USER)
-    //     console.log("user: ", user)
-    //     if(user.length > 0 && user !== undefined) {
-    //         return JSON.parse(user)
-    //     }
-    //     return ""
-    // }
-
-    // const getUserFromLocalStorage = () => {
-    //     const user = localStorage.getItem(SESSION_USER)
-        
-    //     if(user) {
-    //         return JSON.parse(user)
-    //     }
-    //     return ""
-    // }
-
-    // const [sessionUser, setSessionUser] = useState(getUserFromLocalStorage())
-
-    const [sessionUser, setSessionUser] = useState()
-    
-
-    const loginSessionUser = (user) => {
-        localStorage.setItem(SESSION_USER, user);
-        localStorage.setItem(USER_TYPE, user.userType);
+    const [sessionUser, setSessionUser] = useState({username:""})
+    const checkType = (user) => {
         if (user.userType === "admin")
         {
             setUserType({
@@ -65,17 +42,42 @@ export const SessionUserProvider = ({children}) => {
                 business:true
             });     
         }
+    }
 
+    // Stores login data in local storage
+    const getLocalStorageSessionUser = () => {
+        const user = localStorage.getItem(SESSION_USER)
+        if (user)
+        {
+            return JSON.parse(user)
+        }
+    }
+
+    useEffect(() => {
+        const user = getLocalStorageSessionUser()
+        if (user)
+        {
+            setSessionUser(user)
+            checkType(user);
+            setLoggedIn(true)
+        }
+    }, [sessionUser.username])
+    
+
+    const loginSessionUser = (user) => {
+        localStorage.setItem(SESSION_USER, JSON.stringify(user));
+        // localStorage.setItem(USER_TYPE, user.userType);
+            
         setSessionUser(user);
         setLoggedIn(true)
+        checkType(user);
+
+
     }
 
     const logoutSessionUser = () => {
         localStorage.setItem(SESSION_USER, "");
-        localStorage.setItem(USER_TYPE, "");
-        setSessionUser(null)
-        // setUserType(null);
-
+        setSessionUser({username:""})
         setLoggedIn(false)
     }
 

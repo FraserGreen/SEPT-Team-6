@@ -16,6 +16,17 @@ import { AddBooks } from '../Management/AddBooks';
 import { Book } from '../Book/Book';
 import { RegisterBusiness } from '../Register/RegisterBusiness';
 import { Genre } from '../Genre/Genre';
+import { Search } from '../Search/Search';
+import { MyListings } from '../My-Listings/MyListings';
+import { CreateListing } from '../CreateListing/CreateListing';
+import { Cart } from '../Cart/Cart';
+import { Footer } from '../Footer/Footer';
+import { PurchaseHistory } from '../Profile/PurchaseHistory';
+import { SellerHistory } from '../Profile/SellerHistory';
+import { ProfileDashBoard } from '../Profile/ProfileDashBoard';
+import { About } from '../About/About';
+
+
 
 
 
@@ -36,13 +47,22 @@ function App()
             <Route path="/register" component={()=> <Register/>}/>
             <Route path="/book/:bookID" component={() => <Book/>}/>
             <Route path="/genre/:genreParam" component={() => <Genre/>}/>
+            <Route path="/search/:searchInput" component={() => <Search/>}/>
+            <Route path="/orders/purchase-history" component={()=> <PurchaseHistory/>}/>
+            <Route path="/orders/seller-history" component={()=> <SellerHistory/>}/>
+            <Route path='/profile' component={()=> <ProfileDashBoard/>}/>
             <Route path="/management/books/add" component={()=> <AddBooks/>}/>
             <Route path="/management/books" component={()=> <ManageBooks/>}/>
             <Route path="/management/users" component={()=> <ManageUsers/>}/>
             <Route path="/management" component={()=> <Management/>}/>
+            <Route path="/create-listing" component={()=> <CreateListing/>}/>
+            <Route path="/my-listings" component={()=> <MyListings/>}/>
+            <Route path="/cart" component={()=> <Cart/>}/>
+            <Route path="/about-us" component={()=> <About/>}/>
             <Route path="/" component={()=> <Homepage/> }/>
           </Switch>
         </Router>
+        <Footer/>
       </SessionUserProvider>
 
       

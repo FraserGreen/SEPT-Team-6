@@ -180,7 +180,7 @@ export const AddBooks = () => {
                         console.log(e.target.value);
                     }}>
                         <option value="fiction">Fiction</option>
-                        <option value="non-fiction">Non-Fiction</option>
+                        <option value="self-help">Self-Help</option>
                         <option value="kids-teens">Kids & Teen</option>
                         <option value="adult">Adult</option>
                         <option value="school">School</option>
@@ -233,7 +233,7 @@ export const AddBooks = () => {
                     </div>
                     </Row>
                 </Container>
-                </div>
+            </div>
         </div>
     )
 }

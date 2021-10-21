@@ -15,7 +15,7 @@ export const Genre = () => {
     const history = useHistory();
     const { genreParam } = useParams();
     const [books, setBooks] = useState();
-    const [dataLoaded, setDataLoaded] = useState(false);
+
 
     const populateData = async () =>
     {
@@ -66,61 +66,63 @@ export const Genre = () => {
 
     if (books)
     {
-        if (books === ("No results found for '" + genreParam + "'."))
-        {
-            return (
-                <div>
-                    <h1>
-                        No books found.
-                    </h1>
-                </div>
-            )
-        }
+        // if (books === ("No results found for '" + genreParam + "'."))
+        // {
+        //     return (
+        //         <div>
+        //             <h1>
+        //                 No books found.
+        //             </h1>
+        //         </div>
+        //     )
+        // }
         
-        else
-        {
-            const booksDisplay = books.map(book => {
-                return (
-                    <Col>
-                        <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '18rem', height:'20rem', cursor:'pointer'}} >
-                            <Card.Img variant="top" src={book.imgURL} />
-                                <div className='bookCardContent'>
-    
-                                    <Card.Body>
-                                        <Card.Title>
-                                        <div className='bookCardTitle'>
-                                            {book.title}
+        // else
+        // {
+        const booksDisplay = books.map(book => {
+            return (
+                <Col md='auto'>
+                    <Card onClick={() => changeURL(book.id)} tag='a' style={{ width: '15rem', height:'22rem', maxHeight:'22rem', cursor:'pointer'}} >
+                        <Card.Img variant="top" src={book.imgURL} style={{height:'100%'}} />
+                            {/* <div className='bookCardContent'>
+
+                                <Card.Body>
+                                    <Card.Title>
+                                    <div className='bookCardTitle'>
+                                        {book.title}
+                                    </div>
+                                    </Card.Title>
+                                    <Card.Text>
+                                        <div className='bookPrice'>
+                                            ${book.price}
                                         </div>
-                                        </Card.Title>
-                                        <Card.Text>
-                                            <div className='bookPrice'>
-                                                ${book.price}
-                                            </div>
-                                        </Card.Text>
-                                    </Card.Body>
-                                </div>
-    
-                            </Card>
-                    </Col>
-                )
-            })
+                                    </Card.Text>
+                                </Card.Body>
+                            </div> */}
+
+                        </Card>
+                </Col>
+            )
+        })
     
         return (
-            <div>
+            <div className='main-wrapper-home-page'> 
                 <Container>
+                    <div>
                     <Row>
                         {booksDisplay}
                     </Row>
+                    </div>
                 </Container>
             </div>
         )
-        }
+        
     }
    
     else
     {
         return (
-            <div>
+            <div className='main-wrapper-home-page'>
                 <Container>
                     <h1>
                         No books for this category.
