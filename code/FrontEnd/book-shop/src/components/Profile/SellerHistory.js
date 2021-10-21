@@ -90,58 +90,73 @@ export const SellerHistory = () => {
     {
         if (tableData)
         {
-            const allTransactions = tableData.asSeller.map(transaction => {
+            if (tableData.asSeller)
+            {
+                const allTransactions = tableData.asSeller.map(transaction => {
+                    return (
+                        <tr>
+                            <td>{transaction.id}</td>
+                            <td>{transaction.listingId}</td>
+                            <td>{transaction.buyer}</td>
+                            <td>{transaction.date}</td>
+                            <td>{transaction.status}</td>
+                
+                        </tr>
+                    )
+                })
+        
                 return (
-                    <tr>
-                        <td>{transaction.id}</td>
-                        <td>{transaction.listingId}</td>
-                        <td>{transaction.buyer}</td>
-                        <td>{transaction.date}</td>
-                        <td>{transaction.status}</td>
-            
-                    </tr>
+                    <div className='main-wrapper-management-page-dashboard'>
+        
+                            <Container>
+                            <h1>
+                                Sell Orders
+                            </h1>
+                                <div style={{'marginTop':'2%'}}>
+                                    <Table bordered striped hover>
+                                        <thead>
+                                            <tr>
+                                                <th>Transaction ID</th>
+                                                <th>Listing ID</th>
+                                                <th>Buyer</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {allTransactions}
+                                        </tbody>
+                                    </Table>
+                                </div>
+                            </Container>
+                            <Container>
+                                <Row>
+                                    <Col>
+                                        <div style={{'marginTop':'2%'}}>
+                                            <NavLink to = "/profile">
+                                                <Button variant='danger' style={{width:'100px', float:'left'}}>
+                                                    Back
+                                                </Button>
+                                            </NavLink>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </Container>
+                    </div>
                 )
-            })
-    
-            return (
-                <div className='main-wrapper-management-page-dashboard'>
-    
-                        <Container>
+            }
+            else
+            {
+                return (
+                    <div className='main-wrapper-management-page-dashboard'>
+                    <Container>
                         <h1>
-                            Sell Orders
+                            Current Sell Orders
                         </h1>
-                            <div style={{'marginTop':'2%'}}>
-                                <Table bordered striped hover>
-                                    <thead>
-                                        <tr>
-                                            <th>Transaction ID</th>
-                                            <th>Listing ID</th>
-                                            <th>Buyer</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {allTransactions}
-                                    </tbody>
-                                </Table>
-                            </div>
-                        </Container>
-                        <Container>
-                            <Row>
-                                <Col>
-                                    <div style={{'marginTop':'2%'}}>
-                                        <NavLink to = "/profile">
-                                            <Button variant='danger' style={{width:'100px', float:'left'}}>
-                                                Back
-                                            </Button>
-                                        </NavLink>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </Container>
+                    </Container>
                 </div>
-            )
+                )
+            }
         }
         else
         {
@@ -152,9 +167,10 @@ export const SellerHistory = () => {
                         Current Sell Orders
                     </h1>
                 </Container>
-            </div>
+                </div>
             )
         }
+            
     }
    
 }

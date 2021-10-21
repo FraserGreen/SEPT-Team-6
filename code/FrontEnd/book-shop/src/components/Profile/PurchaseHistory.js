@@ -126,77 +126,92 @@ export const PurchaseHistory = () => {
     {
         if (tableData)
         {
-            const allTransactions = tableData.asBuyer.map(transaction => {
+            if (tableData.asBuyer)
+            {
+                const allTransactions = tableData.asBuyer.map(transaction => {
+                    return (
+                        <tr>
+                            <td>{transaction.id}</td>
+                            <td>{transaction.listingId}</td>
+                            <td>{transaction.seller}</td>
+                            <td>{transaction.date}</td>
+                            <td>{transaction.status}</td>
+                            <td >
+                               
+                                <button className='tableButtonPurchaseHistory' onClick={()=> {cancelItem(transaction.id)}}>
+                                    <img src='http://cdn.onlinewebfonts.com/svg/img_439489.png'/>
+                                </button>
+                            </td>
+                
+                        </tr>
+                    )
+                })
+        
                 return (
-                    <tr>
-                        <td>{transaction.id}</td>
-                        <td>{transaction.listingId}</td>
-                        <td>{transaction.seller}</td>
-                        <td>{transaction.date}</td>
-                        <td>{transaction.status}</td>
-                        <td >
-                           
-                            <button className='tableButtonPurchaseHistory' onClick={()=> {cancelItem(transaction.id)}}>
-                                <img src='http://cdn.onlinewebfonts.com/svg/img_439489.png'/>
-                            </button>
-                        </td>
-            
-                    </tr>
-                )
-            })
+                    <div className='main-wrapper-management-page-dashboard'>
     
-            return (
-                <div className='main-wrapper-management-page-dashboard'>
-
-                        <Container>
-                            {
-                                showErrorCancel === true && messageCancel.failure
-                                ?
-                                <Alert variant="danger" onClose={() => setShowErrorCancel(false)} dismissible>
-                                <Alert.Heading>Error</Alert.Heading>
-                                <p>
-                                    {messageCancel.message}
-                                </p>
-                                </Alert>
-                                :
-                                <></>
-                            }
-                                
+                            <Container>
+                                {
+                                    showErrorCancel === true && messageCancel.failure
+                                    ?
+                                    <Alert variant="danger" onClose={() => setShowErrorCancel(false)} dismissible>
+                                    <Alert.Heading>Error</Alert.Heading>
+                                    <p>
+                                        {messageCancel.message}
+                                    </p>
+                                    </Alert>
+                                    :
+                                    <></>
+                                }
+                                    
+                            <h1>
+                                Buy Orders
+                            </h1>
+                                <div style={{'marginTop':'2%'}}>
+                                    <Table bordered striped hover>
+                                        <thead>
+                                            <tr>
+                                                <th>Transaction ID</th>
+                                                <th>Listing ID</th>
+                                                <th>Seller</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {allTransactions}
+                                        </tbody>
+                                    </Table>
+                                </div>
+                            </Container>
+                            <Container>
+                                <Row>
+                                    <Col>
+                                        <div style={{'marginTop':'2%'}}>
+                                            <NavLink to = "/profile">
+                                                <Button variant='danger' style={{width:'100px', float:'left'}}>
+                                                    Back
+                                                </Button>
+                                            </NavLink>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </Container>
+                    </div>
+                )
+            }
+            else
+            {
+                return (
+                    <div className='main-wrapper-management-page-dashboard'>
+                    <Container>
                         <h1>
-                            Buy Orders
+                            Current Buy Orders
                         </h1>
-                            <div style={{'marginTop':'2%'}}>
-                                <Table bordered striped hover>
-                                    <thead>
-                                        <tr>
-                                            <th>Transaction ID</th>
-                                            <th>Listing ID</th>
-                                            <th>Seller</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {allTransactions}
-                                    </tbody>
-                                </Table>
-                            </div>
-                        </Container>
-                        <Container>
-                            <Row>
-                                <Col>
-                                    <div style={{'marginTop':'2%'}}>
-                                        <NavLink to = "/profile">
-                                            <Button variant='danger' style={{width:'100px', float:'left'}}>
-                                                Back
-                                            </Button>
-                                        </NavLink>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </Container>
+                    </Container>
                 </div>
-            )
+                )
+            }
         }
         else
         {
@@ -210,6 +225,7 @@ export const PurchaseHistory = () => {
             </div>
             )
         }
+            
     }
    
 }
