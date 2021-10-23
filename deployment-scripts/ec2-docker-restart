@@ -13,6 +13,6 @@ sudo docker build -t frontend frontend/
 sudo docker run -d -p 8080:8080 loginmicroservices
 sudo docker run -d -p 8081:8081 bookmicroservices
 sudo docker run -d -p 8082:8082 listingmicroservices
-sudo docker run -d -p 8083:8083 cartmicroservices
-sudo docker run -d -p 8084:8084 transactionmicroservices
+sudo docker run -d -p 8083:8083 transactionmicroservices
+sudo docker run -d -p 8084:8084 cartmicroservices
 sudo docker run -d -p 3000:3000 frontend
