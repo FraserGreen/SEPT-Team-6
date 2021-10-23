@@ -25,11 +25,11 @@ jobs:
             scp target/*.jar ec2-user@$EC2_DNS:~/loginmicroservices/app.jar
 
       - run:
-          name: listingsmicroservices
+          name: listingmicroservices
           command: |
-            cd ~/project/code/BackEnd/listingsmicroservices/
+            cd ~/project/code/BackEnd/listingmicroservices/
             source mvnw package
-            scp target/*.jar ec2-user@$EC2_DNS:~/listingsmicroservices/app.jar
+            scp target/*.jar ec2-user@$EC2_DNS:~/listingmicroservices/app.jar
 
       - run:
           name: cartmicroservices
