@@ -20,44 +20,51 @@ export const RegisterBusiness = () => {
 
     const submit =  async (event) => {
         event.preventDefault()
-        if (fields.password !== fields.confirmPassword)
+
+        if (fields.password)
         {
-            setShow(true);
-
-            setMessage({
-                success: false,
-                failure: true,
-                message: "Passwords do not match!"
-            })
-
-            return;
+            if (fields.password !== fields.confirmPassword)
+            {
+                setShow(true);
+    
+                setMessage({
+                    success: false,
+                    failure: true,
+                    message: "Passwords do not match!"
+                })
+    
+                return;
+            }
+    
+            if ((fields.password.length < passwordLength) || (fields.confirmPassword.length < passwordLength))
+            {
+                setShow(true);
+    
+                setMessage({
+                    success: false,
+                    failure: true,
+                    message: "Passwords is not long enough!"
+                })
+    
+                return;
+            }
         }
 
-        if ((fields.password.length < passwordLength) || (fields.confirmPassword.length < passwordLength))
+        if (fields.phone)
         {
-            setShow(true);
-
-            setMessage({
-                success: false,
-                failure: true,
-                message: "Passwords is not long enough!"
-            })
-
-            return;
+            if (fields.phone.length !== phoneLength || String(fields.phone).charAt(0) !== '0')
+            {
+                setShow(true);
+                setMessage({
+                    success: false,
+                    failure: true,
+                    message: "Phone number invalid"
+                })
+    
+                return;
+            }
         }
-
-        if (fields.phone.length !== phoneLength || String(fields.phone).charAt(0) !== '0')
-        {
-            setShow(true);
-            setMessage({
-                success: false,
-                failure: true,
-                message: "Phone number invalid"
-            })
-
-            return;
-        }
-
+        
         const data = {
             username: String(fields.username),
             firstName: String(fields.firstName),

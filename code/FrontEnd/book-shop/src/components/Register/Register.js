@@ -20,45 +20,54 @@ export const Register = () => {
 
     const submit =  async (event) => {
         event.preventDefault()
-        if (fields.password !== fields.confirmPassword)
+        
+        if (fields.password)
         {
-            setShow(true);
-
-            setMessage({
-                success: false,
-                failure: true,
-                message: "Passwords do not match!"
-            })
+            if (fields.password !== fields.confirmPassword)
+            {
+                setShow(true);
+    
+                setMessage({
+                    success: false,
+                    failure: true,
+                    message: "Passwords do not match!"
+                })
+    
+                return;
+            }
+    
+            // Input checking for minimum password length
+            if ((fields.password.length < passwordLength) || (fields.confirmPassword.length < passwordLength))
+            {
+                setShow(true);
+    
+                setMessage({
+                    success: false,
+                    failure: true,
+                    message: "Passwords is not long enough!"
+                })
+    
+                return;
+            }
+        }
+        if (fields.phone)
+        {
+            // Input checking for correct format and length
+            if (fields.phone.length !== phoneLength || String(fields.phone).charAt(0) !== '0')
+            {
+                setShow(true);
+                setMessage({
+                    success: false,
+                    failure: true,
+                    message: "Phone number invalid"
+                })
 
             return;
+  }
         }
 
-        // Input checking for minimum password length
-        if ((fields.password.length < passwordLength) || (fields.confirmPassword.length < passwordLength))
-        {
-            setShow(true);
 
-            setMessage({
-                success: false,
-                failure: true,
-                message: "Passwords is not long enough!"
-            })
-
-            return;
-        }
-
-        // Input checking for correct format and length
-        if (fields.phone.length !== phoneLength || String(fields.phone).charAt(0) !== '0')
-        {
-            setShow(true);
-            setMessage({
-                success: false,
-                failure: true,
-                message: "Phone number invalid"
-            })
-
-            return;
-        }
+      
 
         const data = {
             username: String(fields.username),
