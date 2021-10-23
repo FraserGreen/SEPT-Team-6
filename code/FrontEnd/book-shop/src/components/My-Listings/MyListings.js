@@ -47,7 +47,7 @@ export const MyListings = () => {
             }
 
             console.log("CUNT")
-            const response = await axios.post('http://localhost:8082/api/listings/getlistingsbyseller', sellerRequest, config);
+            const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/listings/getlistingsbyseller', sellerRequest, config);
 
             console.log("Listings response", response);
 
@@ -71,7 +71,7 @@ export const MyListings = () => {
     {
         try
         {
-            const response = await axios.get('http://localhost:8081/api/books/getallbooks');
+            const response = await axios.get('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/books/getallbooks');
 
             return response.data;
         }

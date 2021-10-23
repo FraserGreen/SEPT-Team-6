@@ -46,7 +46,7 @@ export const Login = () => {
                 },
                 withCredential: true
             }
-            const response = await axios.post('http://localhost:8080/api/users/login', data, config);
+            const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/users/login', data, config);
             // console.log(response.data.token);
 
             if (response.status === 200)

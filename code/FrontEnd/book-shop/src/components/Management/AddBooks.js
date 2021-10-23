@@ -83,7 +83,7 @@ export const AddBooks = () => {
                     withCredential: true
                  };
 
-            const response = await axios.post("http://localhost:8081/api/books/addbook", data, config);
+            const response = await axios.post("http://ec2-44-198-179-159.compute-1.amazonaws.com/api/books/addbook", data, config);
 
             if (response.status === 201)
             {
