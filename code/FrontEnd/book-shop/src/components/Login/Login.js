@@ -8,11 +8,13 @@ import { SESSION_USER } from '../constants';
 import jwt_decode from 'jwt-decode';
 import { useSessionUser } from '../../Hooks/useSessionUser';
 import { useHistory } from 'react-router-dom';
+import './Login.css'
 
 export const Login = () => {
 
     const history = useHistory();
     const {loginSessionUser} = useSessionUser();
+    const {userType} = useSessionUser();
     const {fields, setFields, handleInputChange} = useForm({});
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState({
@@ -21,6 +23,8 @@ export const Login = () => {
         message: ""
     })
 
+    // Submits login form.
+    // Decodes token and stores in local storage
     const submit = async (event) => {
         event.preventDefault()
 
@@ -42,7 +46,7 @@ export const Login = () => {
                 },
                 withCredential: true
             }
-            const response = await axios.post('http://localhost:8080/api/users/login', data, config);
+            const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/users/login', data, config);
             // console.log(response.data.token);
 
             if (response.status === 200)
@@ -57,7 +61,11 @@ export const Login = () => {
                 const decoded = jwt_decode(response.data.token);
 
                 loginSessionUser(JSON.stringify(decoded));
-                // localStorage.setItem(SESSION_USER, JSON.stringify(decoded));
+                loginSessionUser(decoded);
+
+                console.log(JSON.stringify(decoded));
+
+                localStorage.setItem(SESSION_USER, JSON.stringify(decoded));
 
                 console.log(JSON.parse(localStorage.getItem(SESSION_USER)));
 
@@ -79,7 +87,7 @@ export const Login = () => {
 
     }
     return (
-        <div>
+        <div className='main-wrapper-login'>
             <Container>
                 {
                     show === true && message.failure
@@ -109,16 +117,18 @@ export const Login = () => {
             <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="john.doe@gmail.com" name = 'username' value = {fields.username} onChange={handleInputChange}/>
+                        <Form.Control type="email" placeholder="admin@gmail.com" name = 'username' value = {fields.username} onChange={handleInputChange}/>
 
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" name='password' value={fields.password} onChange={handleInputChange}/>
+                        <Form.Control type="password" placeholder="password" name='password' value={fields.password} onChange={handleInputChange}/>
                     </Form.Group>
                               
+
                     <br></br>
+
                     <Button variant="primary" type="submit" onClick={submit}>
                         Login
                     </Button>

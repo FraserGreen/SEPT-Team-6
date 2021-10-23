@@ -1,5 +1,6 @@
 import {useState} from "react"
 
+// Hook to simply form handling
 export const useForm = (initalState) => {
     const [fields, setFields] = useState(initalState)
     

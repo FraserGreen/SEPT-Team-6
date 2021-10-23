@@ -25,7 +25,11 @@ public class JwtTokenProvider {
         Map<String,Object> claims = new HashMap<>();
         claims.put("id", (Long.toString(user.getId())));
         claims.put("username", user.getUsername());
-        claims.put("fullName", user.getFullName());
+        claims.put("firstName", user.getFirstName());
+        claims.put("lastName", user.getLastName());
+        claims.put("userType", user.getUserType());
+        claims.put("abn", user.getAbn());
+        claims.put("businessName", user.getBusinessName());
 
         return Jwts.builder()
                 .setSubject(userId)
@@ -65,4 +69,3 @@ public class JwtTokenProvider {
         return Long.parseLong(id);
     }
 }
-

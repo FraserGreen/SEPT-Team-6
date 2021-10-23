@@ -2,19 +2,19 @@
 import React from 'react'
 import { Col, Container, Nav, Row } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
-import { Navbar} from 'react-bootstrap'
-import { Button } from 'react-bootstrap'
+
 import './Navbar.css';
 
 
 export const NavigationBar = () => {
+
     return (
         <div className='categories'>
             <br></br>
             <Container>
                 <Row>
                     <Col>
-                        <NavLink to="/Fiction" style={{textDecoration:"none"}}>
+                        <NavLink to="/genre/fiction" style={{textDecoration:"none"}}>
                             <div className = 'navItems' >
                                 Fiction
                             </div>
@@ -22,32 +22,32 @@ export const NavigationBar = () => {
                     </Col>
 
                     <Col>
-                        <NavLink to="/Non Fiction" style={{textDecoration:"none"}}>
+                        <NavLink to="/genre/self-help" style={{textDecoration:"none"}}>
                             <div className = 'navItems'> 
-                                Non Fiction
+                                Self Help
                             </div></NavLink>
                     </Col>
 
                     <Col>
-                        <NavLink to="/Kids" style={{textDecoration:"none"}}>
+                        <NavLink to="/genre/kids-teens" style={{textDecoration:"none"}}>
                             <div className = 'navItems'>
-                            Kids & Teen
+                                Kids & Teen
                             </div>
                             </NavLink>
                     </Col>
 
                     <Col>
-                        <NavLink to="/Adult" style={{textDecoration:"none"}}>
+                        <NavLink to="/genre/adult" style={{textDecoration:"none"}}>
                             <div className='navItems'>
                                 Adult
-                                </div></NavLink>
+                            </div></NavLink>
                     </Col>
 
                     <Col>
-                        <NavLink to="/School" style={{textDecoration:"none"}}>
+                        <NavLink to="/genre/school" style={{textDecoration:"none"}}>
                             <div className='navItems'>
                                 School
-                                </div></NavLink> 
+                            </div></NavLink> 
                     </Col>
                 </Row>
 
