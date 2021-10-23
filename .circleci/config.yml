@@ -1,0 +1,57 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/java:8-jdk
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - $KEY_FINGERPRINT
+
+      - run:
+          name: loginmicroservices
+          command: |
+            cd ~/project/code/BackEnd/loginmicroservices/
+            source mvnw package
+            scp target/*.jar ec2-user@$EC2_DNS:~/loginmicroservices/app.jar
+
+      - run:
+          name: bookmicroservices
+          command: |
+            cd ~/project/code/BackEnd/bookmicroservices/
+            source mvnw package
+            scp target/*.jar ec2-user@$EC2_DNS:~/loginmicroservices/app.jar
+
+      - run:
+          name: listingsmicroservices
+          command: |
+            cd ~/project/code/BackEnd/listingsmicroservices/
+            source mvnw package
+            scp target/*.jar ec2-user@$EC2_DNS:~/listingsmicroservices/app.jar
+
+      - run:
+          name: cartmicroservices
+          command: |
+            cd ~/project/code/BackEnd/cartmicroservices/
+            source mvnw package
+            scp target/*.jar ec2-user@$EC2_DNS:~/cartmicroservices/app.jar
+
+      - run:
+          name: transactionmicroservices
+          command: |
+            cd ~/project/code/BackEnd/transactionmicroservices/
+            source mvnw package
+            scp target/*.jar ec2-user@$EC2_DNS:~/transactionmicroservices/app.jar
+
+      - run:
+          name: frontend
+          command: |
+            cd ~/project/code/FrontEnd/book-shop/
+            scp . -R ec2-user@$EC2_DNS:~/frontend/
+
+      - run:
+          name: webserver-docker-restart
+          command: ssh ec2-user@$EC2_DNS 'source docker-restart'
+
