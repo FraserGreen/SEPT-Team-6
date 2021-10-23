@@ -1,10 +1,10 @@
 #!/bin/bash
 
-scp -i "$PATH_TO_KEY" Dockerfile-jar ec2-user@"$EC2_DNS":~/loginmicroservices/Dockerfile
-scp -i "$PATH_TO_KEY" Dockerfile-jar ec2-user@"$EC2_DNS":~/bookmicroservices/Dockerfile
-scp -i "$PATH_TO_KEY" Dockerfile-jar ec2-user@"$EC2_DNS":~/listingmicroservices/Dockerfile
-scp -i "$PATH_TO_KEY" Dockerfile-jar ec2-user@"$EC2_DNS":~/cartmicroservices/Dockerfile
-scp -i "$PATH_TO_KEY" Dockerfile-jar ec2-user@"$EC2_DNS":~/transactionmicroservices/Dockerfile
-scp -i "$PATH_TO_KEY" Dockerfile-frontend ec2-user@"$EC2_DNS":~/frontend/Dockerfile
+scp -i "$PATH_TO_KEY" -r dockerfiles/loginmicroservices/ ec2-user@"$EC2_DNS":~/
+scp -i "$PATH_TO_KEY" -r dockerfiles/bookmicroservices/ ec2-user@"$EC2_DNS":~/
+scp -i "$PATH_TO_KEY" -r dockerfiles/listingmicroservices/ ec2-user@"$EC2_DNS":~/
+scp -i "$PATH_TO_KEY" -r dockerfiles/cartmicroservices/ ec2-user@"$EC2_DNS":~/
+scp -i "$PATH_TO_KEY" -r dockerfiles/transactionmicroservices/ ec2-user@"$EC2_DNS":~/
+scp -i "$PATH_TO_KEY" -r dockerfiles/frontend/ ec2-user@"$EC2_DNS":~/
 scp -i "$PATH_TO_KEY" nginx-config ec2-user@"$EC2_DNS":~/nginx-config
 scp -i "$PATH_TO_KEY" ec2-docker-restart ec2-user@"$EC2_DNS":~/docker-restart
