@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import javax.validation.Valid;
 
 
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
+@CrossOrigin
 @RestController
 @RequestMapping("/api/books")
 public class BookController {

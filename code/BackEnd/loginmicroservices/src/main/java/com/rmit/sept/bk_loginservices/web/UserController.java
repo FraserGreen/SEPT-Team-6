@@ -23,7 +23,7 @@ import javax.validation.Valid;
 
 import static com.rmit.sept.bk_loginservices.security.SecurityConstant.TOKEN_PREFIX;
 
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
+@CrossOrigin
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
