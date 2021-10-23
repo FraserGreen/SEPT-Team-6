@@ -8,6 +8,7 @@ import { SESSION_USER } from '../constants';
 import jwt_decode from 'jwt-decode';
 import { useSessionUser } from '../../Hooks/useSessionUser';
 import { useHistory } from 'react-router-dom';
+import './Login.css'
 
 export const Login = () => {
 
@@ -86,7 +87,7 @@ export const Login = () => {
 
     }
     return (
-        <div>
+        <div className='main-wrapper-login'>
             <Container>
                 {
                     show === true && message.failure
@@ -125,13 +126,7 @@ export const Login = () => {
                         <Form.Control type="password" placeholder="password" name='password' value={fields.password} onChange={handleInputChange}/>
                     </Form.Group>
                               
-                    <br></br>
-                    Admin account: 
-                    <br></br>
-                    email: admin@gmail.com
-                    <br></br>
-                    password: password
-                    <br></br>
+
                     <br></br>
 
                     <Button variant="primary" type="submit" onClick={submit}>

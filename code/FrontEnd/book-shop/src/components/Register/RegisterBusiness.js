@@ -166,15 +166,15 @@ export const RegisterBusiness = () => {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formFirstName">
                         <Form.Label>First name</Form.Label>
-                        <Form.Control type="text" placeholder="Hugh" name = 'firstName' value = {fields.firstName} onChange= {handleInputChange}/>
+                        <Form.Control type="text" placeholder="Cloud" name = 'firstName' value = {fields.firstName} onChange= {handleInputChange}/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formLastName">
                         <Form.Label>Last name</Form.Label>
-                        <Form.Control type="text" placeholder="Janus" name = 'lastName' value = {fields.lastName} onChange= {handleInputChange}/>
+                        <Form.Control type="text" placeholder="Strife" name = 'lastName' value = {fields.lastName} onChange= {handleInputChange}/>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formAddress">
                         <Form.Label>Address</Form.Label>
-                        <Form.Control type="text" placeholder="2 Dickson Court" name = 'address' value = {fields.address} onChange= {handleInputChange}/>
+                        <Form.Control type="text" placeholder="7 Gainsborough Court" name = 'address' value = {fields.address} onChange= {handleInputChange}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formPhone">
@@ -189,7 +189,7 @@ export const RegisterBusiness = () => {
 
                     <Form.Group className="mb-3" controlId="formBusinessName">
                         <Form.Label>Business Name</Form.Label>
-                        <Form.Control type="text" placeholder="Lars Janus' Books" name = 'businessName' value = {fields.businessName} onChange= {handleInputChange}/>
+                        <Form.Control type="text" placeholder="Barret's Books" name = 'businessName' value = {fields.businessName} onChange= {handleInputChange}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
