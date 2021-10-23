@@ -159,7 +159,7 @@ export const AddBooks = () => {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Author</Form.Label>
-                    <Form.Control placeholder="Hugh Janus" name='author' value={fields.author} onChange={handleInputChange} />
+                    <Form.Control placeholder="Cloud Strife" name='author' value={fields.author} onChange={handleInputChange} />
                 </Form.Group>
                 {/* <Form.Group className="mb-3">
                     <Form.Label>Genre</Form.Label>
