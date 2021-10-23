@@ -28,7 +28,7 @@ export const ManageBooks = () => {
     {
         try
         {
-            const response = await axios.get('http://localhost:8081/api/books/getallbooks');
+            const response = await axios.get('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/books/getallbooks');
 
             return response.data;
         }

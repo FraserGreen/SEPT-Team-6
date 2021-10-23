@@ -47,7 +47,7 @@ export const Cart = () => {
                 userId: sessionUser.id
             }
     
-            const response = await axios.post('http://localhost:8084/api/carts/clearcart', data, config)
+            const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/carts/clearcart', data, config)
             console.log(response);
             reloadPage();
         }
@@ -82,7 +82,7 @@ export const Cart = () => {
                 userId:cartData.userId
             }
 
-            const response = await axios.post("http://localhost:8084/api/carts/removeitem", data, config);
+            const response = await axios.post("http://ec2-44-198-179-159.compute-1.amazonaws.com/api/carts/removeitem", data, config);
            
             console.log(response);
             window.location.reload(false);
@@ -112,7 +112,7 @@ export const Cart = () => {
                 userId: sessionUser.id,
                 username: sessionUser.username
             }
-            const response = await axios.post('http://localhost:8084/api/carts/checkout', data, config);
+            const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/carts/checkout', data, config);
             console.log("Checked out", response)
         }
         catch (error)
@@ -141,7 +141,7 @@ export const Cart = () => {
                     id: listing.listingId
                 }
         
-                const response = await axios.post('http://localhost:8082/api/listings/marklistingassold', data, config)
+                const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/listings/marklistingassold', data, config)
                 console.log(response);     
             }
             catch (err)
@@ -187,7 +187,7 @@ export const Cart = () => {
                 userId:parseInt(sessionUser.id)
             }
 
-            const response = await axios.post('http://localhost:8084/api/carts/getcart', data, config);
+            const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/carts/getcart', data, config);
 
             console.log(response);
 

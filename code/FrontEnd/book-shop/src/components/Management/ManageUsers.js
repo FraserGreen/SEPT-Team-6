@@ -30,7 +30,7 @@ export const ManageUsers = () => {
     {
         try
         {
-            const response = await axios('http://localhost:8080/api/users/getallusers');
+            const response = await axios('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/users/getallusers');
 
             return response.data;
         }

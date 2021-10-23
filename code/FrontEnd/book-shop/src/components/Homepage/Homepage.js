@@ -29,9 +29,9 @@ export const Homepage = () => {
             },
             withCredential: true
           }
-            const response = await axios.post("http://localhost:8081/api/books/populateData", config);
-            const adminResponse = await axios.post("http://localhost:8080/api/users/makeAdminAccount", config);
-            const responseGetData = await axios.get('http://localhost:8081/api/books/getallbooks');
+            const response = await axios.post("http://ec2-44-198-179-159.compute-1.amazonaws.com/api/books/populateData", config);
+            const adminResponse = await axios.post("http://ec2-44-198-179-159.compute-1.amazonaws.com/api/users/makeAdminAccount", config);
+            const responseGetData = await axios.get('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/books/getallbooks');
             return responseGetData.data;
           
         }   

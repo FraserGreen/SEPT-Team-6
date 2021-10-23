@@ -82,7 +82,7 @@ export const Register = () => {
             }
 
             // Post URL form here
-            const response = await axios.post('http://localhost:8080/api/users/register', data, config);
+            const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/users/register', data, config);
             if(response.status === 201){
                 setFields( {
                     username: "",

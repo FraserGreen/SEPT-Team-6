@@ -47,7 +47,7 @@ export const PurchaseHistory = () => {
             const data = {
                 username:sessionUser.username
             }
-            const response = await axios.post('http://localhost:8083/api/transactions/gettransactionsbyusername', data, config);
+            const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/transactions/gettransactionsbyusername', data, config);
             console.log("reponse: ", response)
             return response.data;
         }
@@ -71,7 +71,7 @@ export const PurchaseHistory = () => {
             const data = {
                 id:transactionId
             }
-            const response = await axios.post('http://localhost:8083/api/transactions/canceltransaction', data, config);
+            const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/transactions/canceltransaction', data, config);
             console.log("reponse: ", response)
             window.location.reload(false);
         }

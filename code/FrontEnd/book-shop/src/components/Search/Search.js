@@ -41,7 +41,7 @@ export const Search = () => {
                 searchTerm:String(searchInput)
             }
             console.log("Search:", searchInput)
-            const responseGetData = await axios.post('http://localhost:8081/api/books/searchbooks', searchRequest, config);
+            const responseGetData = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/books/searchbooks', searchRequest, config);
             console.log("Got search", responseGetData)
 
             return responseGetData.data;

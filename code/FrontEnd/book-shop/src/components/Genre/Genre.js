@@ -33,7 +33,7 @@ export const Genre = () => {
             const genreRequest = {
                 searchTerm:String(genreParam)
             }
-            const responseGetData = await axios.post('http://localhost:8081/api/books/booksbygenre', genreRequest, config);
+            const responseGetData = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/books/booksbygenre', genreRequest, config);
             console.log("Get genre", responseGetData)
             return responseGetData.data;
         }

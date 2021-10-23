@@ -31,7 +31,7 @@ export const CreateListing = () => {
     {
         try 
         {
-            const responseGetData = await axios.get('http://localhost:8081/api/books/getallbooks');
+            const responseGetData = await axios.get('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/books/getallbooks');
             return responseGetData.data;
           
         }   
@@ -99,7 +99,7 @@ export const CreateListing = () => {
                     bookId:selectedBook
                 }
 
-                const response = await axios.post("http://localhost:8082/api/listings/addlisting", data, config);
+                const response = await axios.post("http://ec2-44-198-179-159.compute-1.amazonaws.com/api/listings/addlisting", data, config);
 
                 if (response.status === 201)
                 {

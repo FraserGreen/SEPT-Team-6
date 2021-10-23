@@ -67,7 +67,7 @@ export const BookListing = ({bookID}) => {
                     id:parseInt(bookID)
                 }
 
-                const response = await axios.post("http://localhost:8081/api/books/getbook", bookRequest, config);
+                const response = await axios.post("http://ec2-44-198-179-159.compute-1.amazonaws.com/api/books/getbook", bookRequest, config);
     
                 return response.data;
             }
@@ -78,7 +78,7 @@ export const BookListing = ({bookID}) => {
                     bookId:parseInt(bookID)
                 }
                     
-                const response = await axios.post("http://localhost:8082/api/listings/getlistingsbybookid", listingRequest, config);
+                const response = await axios.post("http://ec2-44-198-179-159.compute-1.amazonaws.com/api/listings/getlistingsbybookid", listingRequest, config);
                 return response.data;
             }
 
@@ -191,7 +191,7 @@ export const BookListing = ({bookID}) => {
                     userId:sessionUser.id
                 }
     
-                const response = await axios.post('http://localhost:8084/api/carts/additem', data, config);
+                const response = await axios.post('http://ec2-44-198-179-159.compute-1.amazonaws.com/api/carts/additem', data, config);
     
                 if (response.status === 201)
                 {
