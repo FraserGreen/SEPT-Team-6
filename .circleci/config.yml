@@ -8,7 +8,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - $KEY_FINGERPRINT
+            - "$KEY_FINGERPRINT"
 
       - run:
           name: loginmicroservices
